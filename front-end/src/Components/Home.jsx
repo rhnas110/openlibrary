@@ -1,24 +1,42 @@
 import React, { useEffect } from "react";
 import { Button, Form, Container, Card, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { allBooks } from "../redux/booksSlice";
+import { allBook, alphaBook, readyBook } from "../redux/booksSlice";
+import { BookSlider } from "./Books/BookSlider";
+import { BookOrder } from "./Books/BookOrder";
+import { BookStockReady } from "./Books/BookStockReady";
 
 import axios from "axios";
 
-const backBooks = "http://localhost:2000/books/all";
+const allBooks = "http://localhost:2000/books/all";
+const readyBooks = "http://localhost:2000/books/ready";
+// need params
+const alphaBooks = "http://localhost:2000/books/";
+// need params
 
 export const Home = () => {
   const dispatch = useDispatch();
-  const books = useSelector((state) => state.booksSlice.value);
+  const type = useSelector((state) => state.checkSlice.thisAlpha);
+
   const getBooks = async () => {
-    const result = await (await axios.get(backBooks)).data;
-    dispatch(allBooks(result));
-    // console.log(result);
+    const all = await (await axios.get(allBooks)).data;
+    dispatch(allBook(all));
+  };
+
+  const alpBooks = async () => {
+    const alpha = await (await axios.get(alphaBooks + type)).data;
+    dispatch(alphaBook(alpha));
+  };
+  const getReadyBooks = async () => {
+    const ready = await (await axios.get(readyBooks)).data;
+    dispatch(readyBook(ready));
   };
 
   useEffect(() => {
     getBooks();
-  }, []);
+    alpBooks();
+    getReadyBooks();
+  }, [type]);
 
   return (
     <div>
@@ -35,36 +53,33 @@ export const Home = () => {
           </Form>
         </Container>
       </div>
-      <div className="p-4 text-black">
-        <Container>
-          <Row>
-            {books.map((item, index) => {
-              return (
-                <Col md={3}>
-                  <Card style={{ width: "18rem" }} key={index}>
-                    <Card.Img
-                      variant="top"
-                      src={item.image}
-                      style={{ height: "20rem" }}
-                    />
-                    <Card.Body>
-                      <Card.Title className="fw-semibold">
-                        {item.title}
-                      </Card.Title>
-                      <Card.Text>
-                        <p style={{ opacity: ".5", fontStyle: "italic" }}>
-                          {item.category}
-                        </p>
-                        <p>{item.author}</p>
-                      </Card.Text>
-                      <Button variant="primary">Pinjam</Button>
-                    </Card.Body>
-                  </Card>
-                </Col>
-              );
-            })}
-          </Row>
-        </Container>
+      <div>
+        <BookSlider />
+      </div>
+      {/* <div>
+        buku paling banyak dibaca
+        <BookSlider />
+      </div>
+      <div>
+        buku yang trending
+        <BookSlider />
+      </div>
+      <div>
+        buku kategori bisnis
+        <BookSlider />
+      </div>
+      <div>
+        buku kategori kids
+        <BookSlider />
+      </div>
+    */}
+      <div>
+        get book by alphabet sort
+        <BookOrder />
+      </div>
+      <div>
+        buku yang stock nya ada
+        <BookStockReady />
       </div>
     </div>
   );

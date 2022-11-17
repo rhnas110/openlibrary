@@ -1,66 +1,62 @@
 import React from "react";
+import { Button } from "react-bootstrap";
 
 export const ThisFooter = () => {
+  function ScrollTop() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
   return (
     <div>
       <footer
-        className="text-white pt-5 pb-4"
+        className="text-white pt-5 pb-0"
         style={{ backgroundColor: "#162F4B" }}
       >
         <div className="container text-center text-md-left">
           <div className="row text-center text-md-left">
             <div className="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
               <h5 className="text-uppercase mb-4 font-weight-bold text-warning">
-                Company Name
+                Open Library
               </h5>
               <p>
-                Here you can use rows and columns to organize your footer
-                content. Lorem ipsum dolor sit amet, ital consectetur lorem
-                ipsum dolor sit amet adipisicing elit.
+                Open Library is an initiative of the Internet Archive,
+                non-profit, building a digital library of Internet sites and
+                other cultural artifacts in digital form
               </p>
             </div>
             <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
               <h5 className="text-uppercase mb-4 font-weight-bold text-warning">
-                Products
+                Books
               </h5>
               <p>
                 <a
-                  href="#"
+                  href="/books"
                   className="text-white"
                   style={{ textDecoration: "none" }}
                 >
-                  TheProviders
+                  All Books
                 </a>
               </p>
               <p>
                 <a
-                  href="#"
+                  href="#books"
                   className="text-white"
                   style={{ textDecoration: "none" }}
                 >
-                  Creativity
+                  Search
                 </a>
               </p>
               <p>
                 <a
-                  href="#"
+                  href="/support"
                   className="text-white"
                   style={{ textDecoration: "none" }}
                 >
-                  SourceFiles
-                </a>
-              </p>
-              <p>
-                <a
-                  href="#"
-                  className="text-white"
-                  style={{ textDecoration: "none" }}
-                >
-                  bootstrap 5 alpha
+                  Be Contributors
                 </a>
               </p>
             </div>
-            <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+            {/* <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
               <h5 className="text-uppercase mb-4 font-weight-bold text-warning">
                 Useful links
               </h5>
@@ -100,26 +96,22 @@ export const ThisFooter = () => {
                   Help
                 </a>
               </p>
-            </div>
+            </div> */}
             <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
               <h5 className="text-uppercase mb-4 font-weight-bold text-warning">
                 Contact
               </h5>
               <p>
                 <i className="fas fa-home mr-3" />
-                New York, NY 2333, US
+                Jakarta, IDN
               </p>
               <p>
                 <i className="fas fa-envelope mr-3" />
-                theproviders98@gmail.com
+                openlibrary@gmail.com
               </p>
               <p>
                 <i className="fas fa-phone mr-3" />
-                +92 3162859445
-              </p>
-              <p>
-                <i className="fas fa-print	 mr-3" />
-                +01 335 633 77
+                +69 696969
               </p>
             </div>
           </div>
@@ -127,63 +119,69 @@ export const ThisFooter = () => {
           <div className="row align-items-center">
             <div className="col-md-7 col-lg-8">
               <p>
-                Copyright ©{new Date().getFullYear()} All rights reserved by:
-                <a href="#" style={{ textDecoration: "none" }}>
-                  <strong className="text-warning">The Providers</strong>
-                </a>
+                Copyright ©{new Date().getFullYear()} All rights reserved by:{" "}
+                <span style={{ textDecoration: "none" }}>
+                  <strong className="text-warning">Open Library</strong>
+                </span>
               </p>
             </div>
             <div className="col-md-5 col-lg-4">
               <div className="text-center text-md-right">
                 <ul className="list-unstyled list-inline">
                   <li className="list-inline-item">
-                    <a
+                    <span
                       href="#"
                       className="btn-floating btn-sm text-white"
                       style={{ fontSize: 23 }}
                     >
                       <i className="fab fa-facebook" />
-                    </a>
+                    </span>
                   </li>
                   <li className="list-inline-item">
-                    <a
-                      href="#"
+                    <span
                       className="btn-floating btn-sm text-white"
                       style={{ fontSize: 23 }}
                     >
                       <i className="fab fa-twitter" />
-                    </a>
+                    </span>
                   </li>
                   <li className="list-inline-item">
-                    <a
-                      href="#"
+                    <span
                       className="btn-floating btn-sm text-white"
                       style={{ fontSize: 23 }}
                     >
                       <i className="fab fa-google-plus" />
-                    </a>
+                    </span>
                   </li>
                   <li className="list-inline-item">
-                    <a
-                      href="#"
+                    <span
                       className="btn-floating btn-sm text-white"
                       style={{ fontSize: 23 }}
                     >
                       <i className="fab fa-linkedin-in" />
-                    </a>
+                    </span>
                   </li>
                   <li className="list-inline-item">
-                    <a
-                      href="#"
+                    <span
                       className="btn-floating btn-sm text-white"
                       style={{ fontSize: 23 }}
                     >
                       <i className="fab fa-youtube" />
-                    </a>
+                    </span>
                   </li>
                 </ul>
               </div>
             </div>
+          </div>
+          <hr className="mb-0" />
+          <div className="text-center p-3">
+            <Button
+              onClick={() => ScrollTop()}
+              id="backbtn"
+              variant="outline-light"
+            >
+              Back to Top
+            </Button>
           </div>
         </div>
       </footer>
