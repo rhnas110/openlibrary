@@ -16,7 +16,6 @@ export const checkSlice = createSlice({
   },
 });
 
-// Action creators are generated for each case reducer function
 export const { whoLogin, checkAlpha } = checkSlice.actions;
 
 export default checkSlice.reducer;

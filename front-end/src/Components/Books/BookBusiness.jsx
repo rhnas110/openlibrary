@@ -8,17 +8,15 @@ import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { RiArrowRightSLine } from "react-icons/ri";
 
-export const BookSlider = () => {
-  const books = useSelector((state) => state.booksSlice.all);
+export const BookBusiness = () => {
+  const business = useSelector((state) => state.booksSlice.thisBusiness);
   const user = useSelector((state) => state.usersSlice.id);
 
   const borrowBooks = (value) => {
     try {
-      // kalo user belum login send alert suruh login atau navigate ke login
       if (!user) {
         return alert("Login please");
       }
-      // kalo user login bisa pinjam
       console.log(value.title);
     } catch (error) {
       console.log(error);
@@ -32,17 +30,17 @@ export const BookSlider = () => {
   };
   return (
     <div className="container py-3 px-4 justify-content-center bg-dark">
-      <div style={{ width: "18rem" }} className="mb-4">
-        <Link to={"/books"} style={{ textDecoration: "none" }} target="_blank">
-          <div className="textsection">
-            <h1 className="text-white">
-              <span className="fw-semibold">All</span> Books{" "}
-              <span>
-                <RiArrowRightSLine />
-              </span>
-            </h1>
-          </div>
-        </Link>
+      <div style={{ width: "12rem" }} className="mb-4">
+        {/* <Link to={"/books"} style={{ textDecoration: "none" }} target="_blank"> */}
+        <div className="textsection">
+          <h1 className="text-white">
+            <span className="fw-semibold"></span> Business{" "}
+            {/* <span>
+              <RiArrowRightSLine />
+            </span> */}
+          </h1>
+        </div>
+        {/* </Link> */}
       </div>
       <Swiper
         freeMode={true}
@@ -72,18 +70,10 @@ export const BookSlider = () => {
           },
         }}
       >
-        {books.map((item, index) => {
+        {business.map((item, index) => {
           return (
             <SwiperSlide key={index}>
-              <Card
-                className="p-0 overflow-hidden shadow"
-                /*
-                when user click card of book will navigate to detail page of that book
-                as={Link}
-                to={"/books"}
-                when user click card of book will navigate to detail page of that book
-                */
-              >
+              <Card className="p-0 overflow-hidden shadow">
                 <div className="overflow-hidden p-0 rounded bg-light">
                   <Card.Img
                     variant="top"

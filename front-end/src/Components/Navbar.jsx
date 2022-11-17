@@ -14,16 +14,16 @@ import { MdLogin, MdRememberMe } from "react-icons/md";
 import { GrUserAdmin } from "react-icons/gr";
 import { Link } from "react-router-dom";
 import { TfiShoppingCartFull } from "react-icons/tfi";
+
+// redux
 import { useSelector, useDispatch } from "react-redux";
 import { whoLogin } from "../redux/checkSlice";
-import logo from "../assets/openlibrary.png";
 
 export const ThisNavbar = () => {
   const [showModal, setShowModal] = useState(false);
   const [hoverOne, setHoverOne] = useState(false);
   const [hoverTwo, setHoverTwo] = useState(false);
   const dispatch = useDispatch();
-  const check = useSelector((state) => state.checkSlice.value);
   const checkUser = useSelector((state) => state.usersSlice.id);
 
   const handleCloseModal = () => setShowModal(false);
@@ -50,8 +50,6 @@ export const ThisNavbar = () => {
         variant="dark"
         expand="lg"
         fixed="top"
-        className=""
-        // style={{ backgroundColor: "rgba(1,2,3,.69)" }}
         style={{ backgroundColor: "rgba(22, 47, 75,.69)" }}
       >
         <Container>

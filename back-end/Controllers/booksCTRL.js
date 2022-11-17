@@ -23,7 +23,7 @@ module.exports = {
         author,
         publisher,
         abstract,
-        // bookId,
+        stocks,
       } = req.body;
       const check = await books.findAll({ raw: true });
       const incBooks = check.map((item) => item.bookId);
@@ -36,6 +36,7 @@ module.exports = {
         publisher,
         abstract,
         bookId: Math.max(...incBooks) + 1,
+        stocks,
       });
 
       return res.status(200).send({ message: "Success", new_books });

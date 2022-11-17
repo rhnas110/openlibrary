@@ -1,10 +1,12 @@
 import React from "react";
+import { Carousel, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+
 import { ThisNavbar } from "../../Components/Navbar";
 import { ThisFooter } from "../../Components/Footer";
 import { Home } from "../../Components/Home";
-import { Carousel, Button } from "react-bootstrap";
+
 import "./home.css";
-import { Link } from "react-router-dom";
 
 export const ThisHome = () => {
   return (
@@ -130,12 +132,7 @@ export const ThisHome = () => {
           </Carousel.Item>
         </Carousel>
       </div>
-
-      <div
-        id="books"
-        // style={{ backgroundColor: "rgba(44, 44, 44,.69)" }}
-        style={{ backgroundColor: "rgba(22, 44, 88,.69)" }}
-      >
+      <div id="books" style={{ backgroundColor: "rgba(44, 44, 44,.69)" }}>
         <Home />
       </div>
       <div>
