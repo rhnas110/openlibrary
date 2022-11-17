@@ -1,18 +1,28 @@
 import React, { useEffect } from "react";
-import { Button, Form, Container, Card, Row, Col } from "react-bootstrap";
+import { Button, Form, Container } from "react-bootstrap";
+import axios from "axios";
+
+// redux
 import { useDispatch, useSelector } from "react-redux";
-import { allBook, alphaBook, readyBook } from "../redux/booksSlice";
+import {
+  allBook,
+  alphaBook,
+  readyBook,
+  businessBook,
+  kidsBook,
+} from "../redux/booksSlice";
+
+// for books
 import { BookSlider } from "./Books/BookSlider";
 import { BookOrder } from "./Books/BookOrder";
 import { BookStockReady } from "./Books/BookStockReady";
-
-import axios from "axios";
+import { BookBusiness } from "./Books/BookBusiness";
+import { BookKids } from "./Books/BookKids";
 
 const allBooks = "http://localhost:2000/books/all";
 const readyBooks = "http://localhost:2000/books/ready";
-// need params
-const alphaBooks = "http://localhost:2000/books/";
-// need params
+
+const books = "http://localhost:2000/books/";
 
 export const Home = () => {
   const dispatch = useDispatch();
@@ -24,18 +34,30 @@ export const Home = () => {
   };
 
   const alpBooks = async () => {
-    const alpha = await (await axios.get(alphaBooks + type)).data;
+    const alpha = await (await axios.get(books + type)).data;
     dispatch(alphaBook(alpha));
   };
   const getReadyBooks = async () => {
     const ready = await (await axios.get(readyBooks)).data;
     dispatch(readyBook(ready));
   };
+  const forBusiness = async () => {
+    const business = await (
+      await axios.get(books + "filter?category=business")
+    ).data;
+    dispatch(businessBook(business));
+  };
+  const forKids = async () => {
+    const kids = await (await axios.get(books + "filter?category=kids")).data;
+    dispatch(kidsBook(kids));
+  };
 
   useEffect(() => {
     getBooks();
     alpBooks();
     getReadyBooks();
+    forBusiness();
+    forKids();
   }, [type]);
 
   return (
@@ -64,21 +86,17 @@ export const Home = () => {
         buku yang trending
         <BookSlider />
       </div>
-      <div>
-        buku kategori bisnis
-        <BookSlider />
-      </div>
-      <div>
-        buku kategori kids
-        <BookSlider />
-      </div>
     */}
       <div>
-        get book by alphabet sort
+        <BookBusiness />
+      </div>
+      <div>
+        <BookKids />
+      </div>
+      <div>
         <BookOrder />
       </div>
       <div>
-        buku yang stock nya ada
         <BookStockReady />
       </div>
     </div>

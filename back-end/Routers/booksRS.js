@@ -1,5 +1,4 @@
 const router = require("express").Router();
-
 const { booksCRTL } = require("../controllers");
 
 // delete all data books
@@ -12,9 +11,7 @@ router.post("/", booksCRTL.add_books);
 
 router.get("/all", booksCRTL.all_books);
 router.get("/ready", booksCRTL.books_ready);
-// router.get(`/`, booksCRTL.category_filter);
-router.get(`/`, booksCRTL.by_filter);
-// router.get(`/`, booksCRTL.author_filter);
+router.get(`/filter/`, booksCRTL.by_filter);
 router.get(`/date/:date`, booksCRTL.date_sort);
 router.get(`/:type`, booksCRTL.alpha_sort);
 

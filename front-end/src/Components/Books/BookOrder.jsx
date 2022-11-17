@@ -3,6 +3,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper";
 import "swiper/css";
 import "swiper/css/free-mode";
+
+// redux
 import { useSelector, useDispatch } from "react-redux";
 import { checkAlpha } from "../../redux/checkSlice";
 import { Card, Button, Dropdown, DropdownButton } from "react-bootstrap";
@@ -57,6 +59,7 @@ export const BookOrder = () => {
           <Dropdown.Item
             eventKey="1"
             onClick={() => dispatch(checkAlpha("asc"))}
+            active={type === "asc" ? true : false}
           >
             A-Z
           </Dropdown.Item>
@@ -64,6 +67,7 @@ export const BookOrder = () => {
           <Dropdown.Item
             eventKey="2"
             onClick={() => dispatch(checkAlpha("desc"))}
+            active={type === "desc" ? true : false}
           >
             Z-A
           </Dropdown.Item>

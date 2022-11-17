@@ -1,4 +1,3 @@
-// get book stock > 0, make the controllers first
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper";
@@ -36,9 +35,9 @@ export const BookStockReady = () => {
         <div className="textsection">
           <h1 className="text-white">
             <span className="fw-semibold">Books</span> Ready{" "}
-            <span>
+            {/* <span>
               <RiArrowRightSLine />
-            </span>
+            </span> */}
           </h1>
         </div>
         {/* </Link> */}
