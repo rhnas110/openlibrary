@@ -16,8 +16,6 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/verification/:token" element={<VerificationPage/>} />
-        {/* <Route path="/verifycode/:token" element={<VerificationPage/>} />
-        <Route path="/codeuser/:token" element={<VerificationPage/>} /> */}
       </Routes>
     </>
   );
