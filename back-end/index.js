@@ -4,9 +4,11 @@ const PORT = 2000;
 const db = require("./models");
 const cors = require("cors");
 require("dotenv").config();
+const bearerToken = require('express-bearer-token');
 
 app.use(express.json());
 app.use(cors());
+app.use(bearerToken())
 
 app.get("/", (req, res) => {
   return res.status(200).send("Open Library");

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { Col, Container, Row } from "react-bootstrap"
 import axios from "axios"
-import {useNavigate} from "react-router-dom"
+import {useNavigate, Link} from "react-router-dom"
 
 import "../style/LoginForm.css"
 
@@ -28,7 +28,6 @@ function LoginForm() {
   return (
     <section className='login' id='connect'>
             <h1>Log In</h1>
-            
         <Container className='container'>
             <form onSubmit={login}>
             <Row>
@@ -36,7 +35,6 @@ function LoginForm() {
                 <input type="text" className='input' placeholder='NIM' value={NIM} 
                  onChange = {(e) => setNIM(e.target.value)} />
                  </Col>
-                
             </Row>
             <Row>
                 <Col sm={6} className="px-1">
@@ -52,8 +50,10 @@ function LoginForm() {
                 <h2>{msg}</h2>
                 </Col>
             </Row>
-            
             </form>
+            <div className='text-center mt-3'>
+            <span>Belum Punya Akun? </span><Link to="/register">Register</Link>
+            </div>
         </Container>
         </section>
   )

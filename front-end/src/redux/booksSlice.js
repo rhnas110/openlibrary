@@ -3,16 +3,37 @@ import { createSlice } from "@reduxjs/toolkit";
 export const booksSlice = createSlice({
   name: "books",
   initialState: {
-    value: [],
+    all: [],
+    alpha: [],
+    stocksReady: [],
+    thisBusiness: [],
+    thisKids: [],
+    category: [],
+    trending: [],
   },
   reducers: {
-    allBooks: (state, action) => {
-      state.value = action.payload;
+    allBook: (state, action) => {
+      state.all = action.payload;
     },
+    alphaBook: (state, action) => {
+      state.alpha = action.payload;
+    },
+    readyBook: (state, action) => {
+      state.stocksReady = action.payload;
+    },
+    businessBook: (state, action) => {
+      state.thisBusiness = action.payload;
+    },
+    kidsBook: (state, action) => {
+      state.thisKids = action.payload;
+    },
+    // categoryBook: (state, action) => {
+    //   state.category = action.payload;
+    // },
   },
 });
 
-// Action creators are generated for each case reducer function
-export const { allBooks } = booksSlice.actions;
+export const { allBook, alphaBook, readyBook, businessBook, kidsBook } =
+  booksSlice.actions;
 
 export default booksSlice.reducer;

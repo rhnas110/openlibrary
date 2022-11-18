@@ -1,8 +1,12 @@
 .contact {
     background: linear-gradient(90.21deg, #3a44d6 -5.91%, #6150ad 111.58%);
-    height: 400px;
+    height: 100%;
     border-radius: 20px; 
     border: 1px solid white;
+  }
+  .contact a {
+    color: white;
+    margin-bottom: 2px;
   }
   .contact h1 {
     text-align: center;

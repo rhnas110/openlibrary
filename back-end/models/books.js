@@ -39,10 +39,14 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       abstract: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(1000),
         allowNull: false,
       },
       bookId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      stocks: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },

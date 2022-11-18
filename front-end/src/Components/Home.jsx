@@ -1,24 +1,64 @@
 import React, { useEffect } from "react";
-import { Button, Form, Container, Card, Row, Col } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import { allBooks } from "../redux/booksSlice";
-
+import { Button, Form, Container } from "react-bootstrap";
 import axios from "axios";
 
-const backBooks = "http://localhost:2000/books/all";
+// redux
+import { useDispatch, useSelector } from "react-redux";
+import {
+  allBook,
+  alphaBook,
+  readyBook,
+  businessBook,
+  kidsBook,
+} from "../redux/booksSlice";
+
+// for books
+import { BookSlider } from "./Books/BookSlider";
+import { BookOrder } from "./Books/BookOrder";
+import { BookStockReady } from "./Books/BookStockReady";
+import { BookBusiness } from "./Books/BookBusiness";
+import { BookKids } from "./Books/BookKids";
+
+const allBooks = "http://localhost:2000/books/all";
+const readyBooks = "http://localhost:2000/books/ready";
+
+const books = "http://localhost:2000/books/";
 
 export const Home = () => {
   const dispatch = useDispatch();
-  const books = useSelector((state) => state.booksSlice.value);
+  const type = useSelector((state) => state.checkSlice.thisAlpha);
+
   const getBooks = async () => {
-    const result = await (await axios.get(backBooks)).data;
-    dispatch(allBooks(result));
-    // console.log(result);
+    const all = await (await axios.get(allBooks)).data;
+    dispatch(allBook(all));
+  };
+
+  const alpBooks = async () => {
+    const alpha = await (await axios.get(books + type)).data;
+    dispatch(alphaBook(alpha));
+  };
+  const getReadyBooks = async () => {
+    const ready = await (await axios.get(readyBooks)).data;
+    dispatch(readyBook(ready));
+  };
+  const forBusiness = async () => {
+    const business = await (
+      await axios.get(books + "filter?category=business")
+    ).data;
+    dispatch(businessBook(business));
+  };
+  const forKids = async () => {
+    const kids = await (await axios.get(books + "filter?category=kids")).data;
+    dispatch(kidsBook(kids));
   };
 
   useEffect(() => {
     getBooks();
-  }, []);
+    alpBooks();
+    getReadyBooks();
+    forBusiness();
+    forKids();
+  }, [type]);
 
   return (
     <div>
@@ -35,36 +75,29 @@ export const Home = () => {
           </Form>
         </Container>
       </div>
-      <div className="p-4 text-black">
-        <Container>
-          <Row>
-            {books.map((item, index) => {
-              return (
-                <Col md={3}>
-                  <Card style={{ width: "18rem" }} key={index}>
-                    <Card.Img
-                      variant="top"
-                      src={item.image}
-                      style={{ height: "20rem" }}
-                    />
-                    <Card.Body>
-                      <Card.Title className="fw-semibold">
-                        {item.title}
-                      </Card.Title>
-                      <Card.Text>
-                        <p style={{ opacity: ".5", fontStyle: "italic" }}>
-                          {item.category}
-                        </p>
-                        <p>{item.author}</p>
-                      </Card.Text>
-                      <Button variant="primary">Pinjam</Button>
-                    </Card.Body>
-                  </Card>
-                </Col>
-              );
-            })}
-          </Row>
-        </Container>
+      <div>
+        <BookSlider />
+      </div>
+      {/* <div>
+        buku paling banyak dibaca
+        <BookSlider />
+      </div>
+      <div>
+        buku yang trending
+        <BookSlider />
+      </div>
+    */}
+      <div>
+        <BookBusiness />
+      </div>
+      <div>
+        <BookKids />
+      </div>
+      <div>
+        <BookOrder />
+      </div>
+      <div>
+        <BookStockReady />
       </div>
     </div>
   );

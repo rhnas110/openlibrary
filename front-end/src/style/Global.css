@@ -1,0 +1,25 @@
+/* text section */
+.textsection {
+    position: relative;
+}
+
+.textsection::before {
+    content: '';
+    position: absolute;
+    width: 83%;
+    height: 4px;
+    border-radius: 4px;
+    background-color: rgba(255, 254, 253, .69);
+    bottom: -5px;
+    left: 0;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .3s ease-in-out;
+}
+
+.textsection:hover::before {
+    transform-origin: left;
+    transform: scaleX(1);
+}
+
+/* end of text section */
