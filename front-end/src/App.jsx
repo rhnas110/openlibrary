@@ -3,6 +3,7 @@ import { Dashboard } from "./Pages/DashboardPage";
 import { ThisHome } from "./Pages/HomePage";
 import Register from "./Components/Register";
 import Login from "./Components/Login";
+import VerificationPage from "./Pages/VerificationPage"
 
 function App() {
   return (
@@ -12,8 +13,11 @@ function App() {
         {/* route for admin */}
         <Route path="/dashboard" element={<Dashboard />} />
         {/* end of route for admin */}
-        <Route path="/register" element= {<Register/>} />
-      <Route path="/login" element= {<Login/>} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/verification/:token" element={<VerificationPage/>} />
+        {/* <Route path="/verifycode/:token" element={<VerificationPage/>} />
+        <Route path="/codeuser/:token" element={<VerificationPage/>} /> */}
       </Routes>
     </>
   );

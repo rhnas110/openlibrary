@@ -31,7 +31,8 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         len : [10]
-      }
+      },
+      unique: true
     },
     isAdmin: {
       type: DataTypes.BOOLEAN,
@@ -41,8 +42,9 @@ module.exports = (sequelize, DataTypes) => {
     verify: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
-      defaultValue: false
-    }
+      defaultValue: false,
+    },
+    
   }, {
     sequelize,
     modelName: 'User',
