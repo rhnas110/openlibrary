@@ -70,7 +70,7 @@ export const BookStockReady = () => {
           },
         }}
       >
-        {ready.map((item, index) => {
+        {ready?.map((item, index) => {
           return (
             <SwiperSlide key={index}>
               <Card className="p-0 overflow-hidden shadow">

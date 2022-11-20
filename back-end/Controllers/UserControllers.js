@@ -55,10 +55,7 @@ module.exports = {
         const token = jwt.sign(payload, "library", { expiresIn: "1h" });
         //   console.log(token);
   
-        res.status(200).send({
-          token,
-          message: "Login Succes",
-        });
+        res.status(200).send(isNIMExist)
       } catch (err) {
         console.log(err);
         res.status(400).send(err);
@@ -90,41 +87,39 @@ module.exports = {
         res.status(400).send(err)
       }
     },
-    
-    // registerCode: async(req, res) => {
-    //   try {
-    //     const verify = jwt.verify(req.token, "library")
-    //     await db.User.update(
-    //       {
-    //         verifycode : req.body.verifycode
-    //       },
-    //       {
-    //         where:{
-    //           id:verify.id
-    //         }
-    //       }
-    //     )
-        
-    //   res.status(200).send("Terkirim")
-    //   }catch(err){
-    //     console.log(err)
-    //     res.status(404).send(err)
-    //   }
-    // },
-    // getCodeUser: async (req, res) => {
-    //   try{ 
-    //     const verify = jwt.verify(req.token, "library")
+    loginAdmin: async(req, res) => {
+      try {
+        const {username, password} = req.body
 
-    //     const result = await db.User.findOne({
-    //       attributes: ["verifycode"],
-    //       where: {
-    //         id:verify.id
-    //       }
-    //     })
-    //     res.status(200).send(result)
-    //   }catch(err){
-    //     console.log(err)
-    //     res.status(404).send(err)
-    //   }
-    // }
+        const isUsernameExist = await db.User.findOne({
+          where: {
+            username,
+            isAdmin: true 
+          },
+          raw: true
+        })
+        if(!isUsernameExist) return res.status(404).send("Only Admins")
+
+        const isValid = await bcrypt.compare(password, isUsernameExist.password)
+        if (!isValid) return res.status(404).send("Wrong Password")
+
+        res.status(200).send("Login Success")
+      }catch(err){
+        console.log(err)
+        res.status(404).send(err)
+      }
+    },
+    keepLogin: async (req, res) => {
+      try{
+        const result = await db.User.findAll({
+          where:{
+            username: req.params.username
+          }
+        })
+        res.status(200).send(result[0])
+      }catch(err){
+        console.log(err)
+        res.status(404).send(err)
+      }
+    }
   };

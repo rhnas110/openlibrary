@@ -31,7 +31,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         {/* end of route for admin */}
         <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
+        {/* <Route path="/login" element={<Login />} /> */}
         <Route path="/verification/:token" element={<VerificationPage/>} />
         
         {/* makes protection when user is true cannot open the login page */}
@@ -40,10 +40,12 @@ function App() {
         ) : (
           <Route path="/login" element={temp ? <LoginAdmin /> : <Login />} />
         )} */}
+
         <Route
           path={user ? navigate("/") : "/login"}
           element={temp ? <LoginAdmin /> : <Login />}
         />
+
       </Routes>
     </>
   );

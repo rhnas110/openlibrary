@@ -72,7 +72,7 @@ export const BookSlider = () => {
           },
         }}
       >
-        {books.map((item, index) => {
+        {books?.map((item, index) => {
           return (
             <SwiperSlide key={index}>
               <Card

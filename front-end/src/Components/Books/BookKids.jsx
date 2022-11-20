@@ -70,7 +70,7 @@ export const BookKids = () => {
           },
         }}
       >
-        {kids.map((item, index) => {
+        {kids?.map((item, index) => {
           return (
             <SwiperSlide key={index}>
               <Card className="p-0 overflow-hidden shadow">

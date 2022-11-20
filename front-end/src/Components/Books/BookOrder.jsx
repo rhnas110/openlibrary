@@ -101,7 +101,7 @@ export const BookOrder = () => {
           },
         }}
       >
-        {alpha.map((item, index) => {
+        {alpha?.map((item, index) => {
           return (
             <SwiperSlide key={index}>
               <Card className="p-0 overflow-hidden shadow">
