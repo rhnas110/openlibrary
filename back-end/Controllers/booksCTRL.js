@@ -66,17 +66,66 @@ module.exports = {
   },
   by_filter: async (req, res) => {
     try {
-      const { category, author, publisher } = req.query;
+      const { title, category, author, publisher } = req.query;
       const check = await books.findAll({
         where: {
-          [Op.or]: {
-            category: category ? category : "",
-            author: author ? author : "",
-            publisher: publisher ? publisher : "",
-          },
+          [Op.or]: [
+            {
+              category: {
+                [Op.like]: "%" + category + "%",
+              },
+            },
+            {
+              title: {
+                [Op.like]: "%" + title + "%",
+              },
+            },
+            {
+              author: {
+                [Op.like]: "%" + author + "%",
+              },
+            },
+            {
+              publisher: {
+                [Op.like]: "%" + publisher + "%",
+              },
+            },
+          ],
         },
         raw: true,
       });
+      // const { search } = req.query;
+      // const newSearch = search || "";
+      // const check = await books.findAll({
+      //   where: {
+      //     [Op.or]: [
+      //       {
+      //         category: {
+      //           [Op.like]: "%" + newSearch + "%",
+      //         },
+      //       },
+      //       {
+      //         title: {
+      //           [Op.like]: "%" + newSearch + "%",
+      //         },
+      //       },
+      //       {
+      //         author: {
+      //           [Op.like]: "%" + newSearch + "%",
+      //         },
+      //       },
+      //       {
+      //         publisher: {
+      //           [Op.like]: "%" + newSearch + "%",
+      //         },
+      //       },
+      //     ],
+      //   },
+      //   raw: true,
+      //   // offset: offset,
+      //   // limit: list_limit,
+      //   // order: [[orderby, direction]],
+      // });
       if (check.length === 0) {
         return res.status(200).send({ message: "buku tidak ada" });
       }
