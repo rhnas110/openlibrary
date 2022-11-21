@@ -4,14 +4,11 @@ import Axios from "axios"
 import "../style/verify.css"
 
 
-import { Container, Row, Col, Button } from 'react-bootstrap'
+import { Container} from 'react-bootstrap'
 import verifyImage from "../asset/search.png"
 
 
 const url = "http://localhost:2000/users/verification"
-
-
-
 
 function VerificationPage() {
   const defaultCode = "1334589"
@@ -20,24 +17,13 @@ function VerificationPage() {
   const [msg, setMsg] = useState("")
   const navigate = useNavigate()
 
- 
-  // console.log(verifycode)
-
-  // const codeUser = async () => {
-  //   await Axios.get(urlll,{
-  //     headers: {
-  //       Authorization: `Bearer ${params.token}`
-  //     }
-  //   })
-  // }
-//  console.log(codeUser())
   
 const verifyToken = async (data) => {
   data.preventDefault()
   if (defaultCode !== verifycode){
     setMsg("Wrong Code")
   } else {
-    await Axios.get(url, {
+      await Axios.get(url, {
       headers: {
         Authorization: `Bearer ${params.token}`
       }
@@ -46,16 +32,6 @@ const verifyToken = async (data) => {
   }
 }
 
-//  const verifyTokenCode = async (data) => {
-//     data.preventDefault()
-//     await Axios.post(urll, {
-//       verifycode
-//     }, {
-//       headers: {
-//         Authorization: `Bearer ${params.token}`
-//       }
-//     })
-//   }
 
   return (
     <div className='keseluruhan'>

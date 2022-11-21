@@ -1,0 +1,58 @@
+.login-admin {
+    background: linear-gradient(90.21deg, #303032 -5.91%, #000000 111.58%);
+    border-radius: 20px; 
+    border: 1px solid black;
+    width: 290px;
+    height: 400px;
+    margin: auto;
+    margin-top: 100px;
+  }
+
+  .login-admin form input{
+    width: 260px;   
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    color: #fff;
+    padding: 18px 26px;
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: 0.8px;
+    /* transition: 0.3s ease-in-out; */
+    margin-top: 2px;
+  }
+ 
+  .login-admin form button {
+    font-weight: 700;
+    color: black;
+    background-color: #fff;
+    padding: 14px 48px;
+    font-size: 18px;
+    margin-top: 10px;
+    border-radius: 20px;
+    margin-left: 45px;
+    margin-bottom: 25px;
+  }
+
+  .login-admin span{
+    font-weight: 700;
+    color: wheat;
+  }
+.login-admin p {
+    color: red;
+    font-weight: 700;
+    text-align: center;
+}
+.login-admin h2{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+    color: wheat;
+    margin-top: 25px;
+}.semua-loginpage{
+  padding: 10px 0 100px 0;
+    background-image: url("../asset/bg-admin.png");
+    background-position: top center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
