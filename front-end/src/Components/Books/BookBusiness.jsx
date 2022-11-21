@@ -70,7 +70,7 @@ export const BookBusiness = () => {
           },
         }}
       >
-        {business.map((item, index) => {
+        {business?.map((item, index) => {
           return (
             <SwiperSlide key={index}>
               <Card className="p-0 overflow-hidden shadow">

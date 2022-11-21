@@ -10,7 +10,7 @@ import { RiArrowRightSLine } from "react-icons/ri";
 
 export const BookSlider = () => {
   const books = useSelector((state) => state.booksSlice.all);
-  const user = useSelector((state) => state.usersSlice.id);
+  const user = useSelector((state) => state.usersSlice.NIM);
 
   const borrowBooks = (value) => {
     try {
@@ -72,7 +72,7 @@ export const BookSlider = () => {
           },
         }}
       >
-        {books.map((item, index) => {
+        {books?.map((item, index) => {
           return (
             <SwiperSlide key={index}>
               <Card

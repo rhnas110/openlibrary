@@ -10,6 +10,7 @@ import {
   Modal,
   Stack,
 } from "react-bootstrap";
+import { useLocation } from "react-router-dom";
 import { MdLogin, MdRememberMe } from "react-icons/md";
 import { GrUserAdmin } from "react-icons/gr";
 import { Link } from "react-router-dom";
@@ -24,7 +25,8 @@ export const ThisNavbar = () => {
   const [hoverOne, setHoverOne] = useState(false);
   const [hoverTwo, setHoverTwo] = useState(false);
   const dispatch = useDispatch();
-  const checkUser = useSelector((state) => state.usersSlice.id);
+  const checkUser = useSelector((state) => state.usersSlice.NIM);
+  const location = useLocation();
 
   const handleCloseModal = () => setShowModal(false);
   const handleShowModal = () => setShowModal(true);
@@ -50,7 +52,10 @@ export const ThisNavbar = () => {
         variant="dark"
         expand="lg"
         fixed="top"
-        style={{ backgroundColor: "rgba(22, 47, 75,.69)" }}
+        style={{
+          backgroundColor: "rgba(22, 47, 75,.69)",
+          // position: "relative",
+        }}
       >
         <Container>
           <Navbar.Brand href="/" className="ms-4" id="zero-one">
@@ -59,9 +64,24 @@ export const ThisNavbar = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto justify-content-end flex-grow-1 mx-sm-3">
-              <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/books">Books</Nav.Link>
-              <Nav.Link href="/about">About</Nav.Link>
+              <Nav.Link
+                href="/"
+                active={location.pathname === "/" ? true : false}
+              >
+                Home
+              </Nav.Link>
+              <Nav.Link
+                href="/books"
+                active={location.pathname === "/books" ? true : false}
+              >
+                Books
+              </Nav.Link>
+              <Nav.Link
+                href="/about"
+                active={location.pathname === "/about" ? true : false}
+              >
+                About
+              </Nav.Link>
               <Button variant="outline-light" hidden={checkUser ? false : true}>
                 <TfiShoppingCartFull /> <Badge bg="light">0</Badge>
               </Button>

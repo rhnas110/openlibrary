@@ -5,6 +5,9 @@ export const checkSlice = createSlice({
   initialState: {
     value: false,
     thisAlpha: "asc",
+    default: "all",
+    searchOne: "Catalog",
+    searchTwo: "Title",
   },
   reducers: {
     whoLogin: (state, action) => {
@@ -13,9 +16,19 @@ export const checkSlice = createSlice({
     checkAlpha: (state, action) => {
       state.thisAlpha = action.payload;
     },
+    changeDef: (state, action) => {
+      state.default = action.payload;
+    },
+    changeSearch: (state, action) => {
+      state.searchOne = action.payload;
+    },
+    changeTwo: (state, action) => {
+      state.searchTwo = action.payload;
+    },
   },
 });
 
-export const { whoLogin, checkAlpha } = checkSlice.actions;
+export const { whoLogin, checkAlpha, changeDef, changeSearch, changeTwo } =
+  checkSlice.actions;
 
 export default checkSlice.reducer;
