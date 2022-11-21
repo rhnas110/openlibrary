@@ -11,7 +11,6 @@ import "../style/registerlogin.css"
 //img 
 import readingBook from "../asset/reading-book.png"
 
-//props
 import RegisterForm from '../props/RegisterForm'
 
 function Register() {

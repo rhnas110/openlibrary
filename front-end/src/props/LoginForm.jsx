@@ -2,6 +2,10 @@ import React, {useState, useEffect} from 'react'
 import { Col, Container, Row } from "react-bootstrap"
 import axios from "axios"
 import {useNavigate, Link} from "react-router-dom"
+import { useDispatch } from "react-redux"
+import { login } from '../redux/usersSlice'
+
+
 
 import "../style/LoginForm.css"
 
@@ -10,14 +14,19 @@ function LoginForm() {
     const [password, setPassword] = useState("")
     const [msg, setMsg] = useState("")
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
-    const login = async (data) => {
+
+    const onLogin = async (data) => {
         data.preventDefault()
         try{
-            await axios.post("http://localhost:2000/users/login", {
+             const response = await axios.post("http://localhost:2000/users/login", {
                 NIM,
                 password
             })
+            console.log(response.data)
+            dispatch(login(response.data))
+            localStorage.setItem("username", response.data.username)
             navigate("/")
         }catch(err){
             if(err.response) {
@@ -29,7 +38,7 @@ function LoginForm() {
     <section className='login' id='connect'>
             <h1>Log In</h1>
         <Container className='container'>
-            <form onSubmit={login}>
+            <form onSubmit={onLogin}>
             <Row>
                 <Col sm={6} className="px-1">
                 <input type="text" className='input' placeholder='NIM' value={NIM} 

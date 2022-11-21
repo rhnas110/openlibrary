@@ -1,20 +1,20 @@
-
 .verify {
     margin: auto;
     margin-top: 50px;
     height: 80vh;
     width: 50vh;
-    border-radius: 20px; 
+    border-radius: 20px;
     border: 1px solid white;
-  }
+}
+
 .verify input {
     display: block;
     margin: 2em auto;
     border: none;
     padding: 0;
     width: 10.5ch;
-    background: repeating-linear-gradient(90deg, white 0, white 1ch, transparent 0, 
-    transparent 1.5ch) 0 100% / 10ch 2px no-repeat;
+    background: repeating-linear-gradient(90deg, white 0, white 1ch, transparent 0,
+            transparent 1.5ch) 0 100% / 10ch 2px no-repeat;
     font: 5ch droid sans mono, consolas, monospace;
     letter-spacing: 0.5ch;
     color: orange;
@@ -26,29 +26,33 @@
     color: orange;
     /* font-weight: 700px; */
 }
+
 .verify .btn-btn {
 
     color: black;
     background-color: orange;
     width: 100px;
     height: 50px;
-    position: absolute;
-    top: 320px;
-    left: 580px;
+    position: relative;
+    left: 33%;
+    /* right: 30%; */
     transition: 0.5s;
     border: none;
     border-radius: 15px;
 }
-.verify .btn-btn:hover{
+
+.verify .btn-btn:hover {
     border: none;
     border-radius: 5px;
 }
+
 .verify h1 {
     font-weight: 700;
     color: orange;
     letter-spacing: 1px;
     text-align: center;
 }
+
 .verify p {
     font-weight: 700;
     color: red;
@@ -62,9 +66,9 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 130px;
-    
-  }
+    margin-top: 100px;
+
+}
 
 .keseluruhan {
     padding: 22px 0 100px 0;
