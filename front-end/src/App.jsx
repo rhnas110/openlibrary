@@ -7,11 +7,12 @@ import { ThisHome } from "./Pages/Home/HomePage";
 import { BooksPage } from "./Pages/Books/BooksPage";
 import { AboutPage } from "./Pages/About/AboutPage";
 import { LoginAdmin } from "./Pages/Admin/Login";
-import { NotFound } from "./Pages/NotFound";
+import { NotFound } from "./Pages/NotFound/NotFound";
 
 // components
 import Register from "./Components/Register";
 import Login from "./Components/Login";
+
 import VerificationPage from "./Pages/VerificationPage"
 import BooksDetail from "./Components/BooksDetail";
 
@@ -21,17 +22,19 @@ import "./style/Global.css";
 function App() {
   const navigate = useNavigate();
   const temp = useSelector((state) => state.checkSlice.value);
-  const user = useSelector((state) => state.usersSlice.id);
+  const user = useSelector((state) => state.usersSlice.NIM);
   return (
     <>
       <Routes>
-        <Route path="/" element={<ThisHome />} />
+        <Route exact path="/" element={<ThisHome />} />
         <Route path="/books" element={<BooksPage />} />
         <Route path="/about" element={<AboutPage />} />
         {/* route for admin */}
         <Route path="/dashboard" element={<Dashboard />} />
         {/* end of route for admin */}
         <Route path="/register" element={<Register />} />
+        <Route path="/verification/:token" element={<VerificationPage />} />
+
         {/* <Route path="/login" element={<Login />} /> */}
         <Route path="/verification/:token" element={<VerificationPage/>} />
         
@@ -46,7 +49,7 @@ function App() {
           element={temp ? <LoginAdmin /> : <Login />}
         />
         <Route path="/getdetail/:id" element={<BooksDetail/>} />
-
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );

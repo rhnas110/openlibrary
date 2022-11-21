@@ -29,27 +29,47 @@ export const Home = () => {
   const type = useSelector((state) => state.checkSlice.thisAlpha);
 
   const getBooks = async () => {
-    const all = await (await axios.get(allBooks)).data;
-    dispatch(allBook(all));
+    try {
+      const all = await (await axios.get(allBooks)).data;
+      dispatch(allBook(all));
+    } catch (error) {
+      let err = error;
+    }
   };
 
   const alpBooks = async () => {
-    const alpha = await (await axios.get(books + type)).data;
-    dispatch(alphaBook(alpha));
+    try {
+      const alpha = await (await axios.get(books + type)).data;
+      dispatch(alphaBook(alpha));
+    } catch (error) {
+      let err = error;
+    }
   };
   const getReadyBooks = async () => {
-    const ready = await (await axios.get(readyBooks)).data;
-    dispatch(readyBook(ready));
+    try {
+      const ready = await (await axios.get(readyBooks)).data;
+      dispatch(readyBook(ready));
+    } catch (error) {
+      let err = error;
+    }
   };
   const forBusiness = async () => {
-    const business = await (
-      await axios.get(books + "filter?category=business")
-    ).data;
-    dispatch(businessBook(business));
+    try {
+      const business = await (
+        await axios.get(books + "filter?category=business")
+      ).data;
+      dispatch(businessBook(business));
+    } catch (error) {
+      let err = error;
+    }
   };
   const forKids = async () => {
-    const kids = await (await axios.get(books + "filter?category=kids")).data;
-    dispatch(kidsBook(kids));
+    try {
+      const kids = await (await axios.get(books + "filter?category=kids")).data;
+      dispatch(kidsBook(kids));
+    } catch (error) {
+      let err = error;
+    }
   };
 
   useEffect(() => {
@@ -94,10 +114,10 @@ export const Home = () => {
         <BookKids />
       </div>
       <div>
-        <BookOrder />
+        <BookStockReady />
       </div>
       <div>
-        <BookStockReady />
+        <BookOrder />
       </div>
     </div>
   );
