@@ -14,9 +14,10 @@ app.get("/", (req, res) => {
   return res.status(200).send("Open Library");
 });
 
-const { user, booksRS } = require("./Routers");
+const { user, booksRS, admin } = require("./Routers");
 app.use("/users", user);
 app.use("/books", booksRS);
+app.use("/admin",admin)
 
 app.listen(PORT, () => {
   // synchronize database
