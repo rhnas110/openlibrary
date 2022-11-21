@@ -9,8 +9,9 @@ import {
   Badge,
   Modal,
   Stack,
+  NavDropdown
 } from "react-bootstrap";
-import { MdLogin, MdRememberMe, MdDeleteSweep } from "react-icons/md";
+import { MdLogin, MdRememberMe, MdDeleteSweep, MdAccountCircle, MdAddTask, MdAssignmentInd } from "react-icons/md";
 import { GrUserAdmin } from "react-icons/gr";
 import { Link } from "react-router-dom";
 import { TfiShoppingCartFull } from "react-icons/tfi";
@@ -21,6 +22,8 @@ import { whoLogin } from "../redux/checkSlice";
 import { logout } from "../redux/usersSlice";
 import { login } from "../redux/usersSlice";
 import axios from "axios";
+import { RiH3 } from "react-icons/ri";
+
 
 
 export const ThisNavbar = () => {
@@ -54,11 +57,11 @@ export const ThisNavbar = () => {
   const usernameLocalStorage = localStorage.getItem("username")
 
   const KeepLogin = async () => {
-    try{
+    try {
       const res = await axios.get(`http://localhost:2000/users/keeplogin/${usernameLocalStorage}`)
       dispatch(login(res.data))
       console.log(res.data)
-    }catch(err){
+    } catch (err) {
       console.log(err)
     }
   }
@@ -72,6 +75,26 @@ export const ThisNavbar = () => {
     localStorage.removeItem("username")
   }
 
+  const ProfileShow = () => {
+    if (username) {
+      return (
+        <NavDropdown title="Profile" id="basic-nav-dropdown">
+          <NavDropdown.Item href="#action/3.1">
+            <Button variant="light"
+              onClick={""}>{username} <MdAccountCircle />
+            </Button>
+          </NavDropdown.Item>
+          <NavDropdown.Item href="#action/3.2">
+            <Button variant="light"
+              onClick={onLogout}>Logout <MdDeleteSweep />
+            </Button>
+          </NavDropdown.Item>
+        </NavDropdown>
+      )
+    }
+  }
+
+
   return (
     <div>
       <Navbar
@@ -84,9 +107,7 @@ export const ThisNavbar = () => {
           <Navbar.Brand href="/" className="ms-4" id="zero-one">
             <span>OpenLibrary</span>
           </Navbar.Brand>
-          <Navbar.Brand href="/" className="ms-4" id="zero-one">
-            <span>{username}</span>
-          </Navbar.Brand>
+            <Nav.Link><ProfileShow /></Nav.Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto justify-content-end flex-grow-1 mx-sm-3">
@@ -97,11 +118,6 @@ export const ThisNavbar = () => {
                 <TfiShoppingCartFull /> <Badge bg="light">0</Badge>
               </Button>
             </Nav>
-      
-            <Button variant="outline-light"
-              onClick={onLogout}>Logout <MdDeleteSweep/>
-              </Button>
-
             {/* button hilang kalo user login */}
             <Button
               variant="outline-light"

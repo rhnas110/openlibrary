@@ -1,6 +1,7 @@
 const db = require("../models");
 const books = db.Books;
 const { Op } = require("sequelize");
+const jwt = require("jsonwebtoken")
 
 module.exports = {
   books_reset: async (req, res) => {
@@ -128,5 +129,18 @@ module.exports = {
       console.log(error);
     }
   },
-  // end of get books
+  getAllProductById: async(req, res) => {
+    try {
+      
+      const response = await books.findOne({
+        where: {
+          id: req.params.id
+        }
+      })
+      res.status(200).send(response)
+    }catch(err){
+      console.log(err)
+      res.status(404).send(err)
+    }
+  }
 };

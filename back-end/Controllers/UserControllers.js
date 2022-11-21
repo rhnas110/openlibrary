@@ -121,5 +121,9 @@ module.exports = {
         console.log(err)
         res.status(404).send(err)
       }
+    },
+    uploadFile: async (req, res) => {
+      let fileUploaded = req.file
+      res.status(200).send("File Uploaded")
     }
   };

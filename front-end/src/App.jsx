@@ -13,6 +13,7 @@ import { NotFound } from "./Pages/NotFound";
 import Register from "./Components/Register";
 import Login from "./Components/Login";
 import VerificationPage from "./Pages/VerificationPage"
+import BooksDetail from "./Components/BooksDetail";
 
 // style
 import "./style/Global.css";
@@ -45,6 +46,7 @@ function App() {
           path={user ? navigate("/") : "/login"}
           element={temp ? <LoginAdmin /> : <Login />}
         />
+        <Route path="/getdetail/:id" element={<BooksDetail/>} />
 
       </Routes>
     </>
