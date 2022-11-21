@@ -4,6 +4,7 @@ import App from "./App";
 
 //framework
 import "bootstrap/dist/css/bootstrap.min.css";
+import 'react-loading-skeleton/dist/skeleton.css'
 
 //import tambahan
 import { BrowserRouter } from "react-router-dom";

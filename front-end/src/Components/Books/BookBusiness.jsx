@@ -5,21 +5,23 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import { useSelector } from "react-redux";
 import { Card, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { RiArrowRightSLine } from "react-icons/ri";
 
 export const BookBusiness = () => {
   const business = useSelector((state) => state.booksSlice.thisBusiness);
-  const user = useSelector((state) => state.usersSlice.id);
+  const { username } = useSelector((state) => state.usersSlice.value);
 
   const borrowBooks = (value) => {
     try {
-      if (!user) {
-        return alert("Login please");
+      if (!username) {
+        return alert ("Login Ya, Biar Nama Lu Di Panggil")
+      } else if (username) {
+        return alert(`Halo ${username} Salam Literasi!`)
       }
-      console.log(value.title);
+      // console.log(value.title);
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
   };
 
@@ -98,7 +100,7 @@ export const BookBusiness = () => {
                   disabled={item.stocks === 0 ? true : false}
                   onClick={() => borrowBooks(item)}
                 >
-                  {item.stocks === 0 ? "Unavailable" : "Borrow"}
+                  {item.stocks === 0 ? "Unavailable" : <NavLink to={`/getdetail/${item.id}`} className="btn btn-outline-light  ">Books Details</NavLink>}
                 </Button>
               </Card>
             </SwiperSlide>

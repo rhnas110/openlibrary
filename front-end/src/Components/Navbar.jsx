@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Navbar,
   Nav,
@@ -9,9 +9,11 @@ import {
   Badge,
   Modal,
   Stack,
+  NavDropdown
 } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
-import { MdLogin, MdRememberMe } from "react-icons/md";
+import { MdLogin, MdRememberMe, MdDeleteSweep, MdAccountCircle, MdAddTask, MdAssignmentInd } from "react-icons/md";
+
 import { GrUserAdmin } from "react-icons/gr";
 import { Link } from "react-router-dom";
 import { TfiShoppingCartFull } from "react-icons/tfi";
@@ -19,6 +21,12 @@ import { TfiShoppingCartFull } from "react-icons/tfi";
 // redux
 import { useSelector, useDispatch } from "react-redux";
 import { whoLogin } from "../redux/checkSlice";
+import { logout } from "../redux/usersSlice";
+import { login } from "../redux/usersSlice";
+import axios from "axios";
+import { RiH3 } from "react-icons/ri";
+
+
 
 export const ThisNavbar = () => {
   const [showModal, setShowModal] = useState(false);
@@ -46,6 +54,50 @@ export const ThisNavbar = () => {
   const checkLogin = (who) => {
     dispatch(whoLogin(who));
   };
+
+
+  const { username } = useSelector((state) => state.usersSlice.value);
+  const usernameLocalStorage = localStorage.getItem("username")
+
+  const KeepLogin = async () => {
+    try {
+      const res = await axios.get(`http://localhost:2000/users/keeplogin/${usernameLocalStorage}`)
+      dispatch(login(res.data))
+      console.log(res.data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  useEffect(() => {
+    KeepLogin()
+  }, [])
+
+  const onLogout = () => {
+    dispatch(logout())
+    localStorage.removeItem("username")
+  }
+
+  const ProfileShow = () => {
+    if (username) {
+      return (
+        <NavDropdown title="Profile" id="basic-nav-dropdown">
+          <NavDropdown.Item href="#action/3.1">
+            <Button variant="light"
+              onClick={""}>{username} <MdAccountCircle />
+            </Button>
+          </NavDropdown.Item>
+          <NavDropdown.Item href="#action/3.2">
+            <Button variant="light"
+              onClick={onLogout}>Logout <MdDeleteSweep />
+            </Button>
+          </NavDropdown.Item>
+        </NavDropdown>
+      )
+    }
+  }
+
+
   return (
     <div>
       <Navbar
@@ -61,6 +113,7 @@ export const ThisNavbar = () => {
           <Navbar.Brand href="/" className="ms-4" id="zero-one">
             <span>OpenLibrary</span>
           </Navbar.Brand>
+            <Nav.Link><ProfileShow /></Nav.Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto justify-content-end flex-grow-1 mx-sm-3">

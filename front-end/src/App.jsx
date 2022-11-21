@@ -12,7 +12,9 @@ import { NotFound } from "./Pages/NotFound/NotFound";
 // components
 import Register from "./Components/Register";
 import Login from "./Components/Login";
-import VerificationPage from "./Pages/VerificationPage";
+
+import VerificationPage from "./Pages/VerificationPage"
+import BooksDetail from "./Components/BooksDetail";
 
 // style
 import "./style/Global.css";
@@ -33,6 +35,9 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/verification/:token" element={<VerificationPage />} />
 
+        {/* <Route path="/login" element={<Login />} /> */}
+        <Route path="/verification/:token" element={<VerificationPage/>} />
+        
         {/* makes protection when user is true cannot open the login page */}
         {/* {user ? (
           <Route path="/" element={<NotFound />} />
@@ -43,6 +48,7 @@ function App() {
           path={user ? navigate("/") : "/login"}
           element={temp ? <LoginAdmin /> : <Login />}
         />
+        <Route path="/getdetail/:id" element={<BooksDetail/>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { Col, Container, Row, Button, Alert } from "react-bootstrap"
+import {useDispatch} from "react-redux"
+import { login } from '../redux/usersSlice'
 
 //img
 import contactImg from "../asset/reading-book.png"
@@ -17,16 +19,19 @@ function RegisterForm() {
     const [password, setPassword] = useState("")
     const [msg, setMsg] = useState("")
     const [show, setShow] = useState(false)
+    const dispatch = useDispatch()
 
     const Auth = async (data) => {
         data.preventDefault()
         try {
-            await axios.post("http://localhost:2000/users/register", {
+            const response = await axios.post("http://localhost:2000/users/register", {
                 username,
                 email,
                 NIM,
                 password,
             });
+            dispatch(login(response.data))
+            localStorage.setItem("username", response.data.username)
             setShow(true)
         } catch (err) {
             if (err.response) {
