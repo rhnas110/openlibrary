@@ -14,5 +14,6 @@ router.get("/ready", booksCRTL.books_ready);
 router.get(`/filter/`, booksCRTL.by_filter);
 router.get(`/date/:date`, booksCRTL.date_sort);
 router.get(`/:type`, booksCRTL.alpha_sort);
+router.get(`/getdetail/:id`, booksCRTL.getAllProductById);
 
 module.exports = router;
