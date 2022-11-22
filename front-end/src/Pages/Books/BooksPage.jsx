@@ -24,6 +24,7 @@ import {
   checkAlpha,
 } from "../../redux/checkSlice";
 import { Pagination } from "./Pagination";
+import swal from "sweetalert";
 
 const books = "http://localhost:2000/books/";
 
@@ -38,6 +39,8 @@ export const BooksPage = () => {
   const { searchOne } = useSelector((state) => state.checkSlice);
   const { searchTwo } = useSelector((state) => state.checkSlice);
   const { thisAlpha } = useSelector((state) => state.checkSlice);
+  const { username } = useSelector((state) => state.usersSlice.value);
+
   const getBooks = async () => {
     try {
       const resultAll = await (await axios.get(books + `${def}`)).data;
@@ -54,6 +57,25 @@ export const BooksPage = () => {
       dispatch(
         changeDef(`search?${searchTwo.toLowerCase()}=${search.current.value}`)
       );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const borrowBooks = (value) => {
+    try {
+      if (!username) {
+        // return alert("Login Ya, Biar Nama Lu Di Panggil");
+        return swal({
+          title: "Login first",
+          // text: "You clicked the button!",
+          icon: "error",
+          button: "Oke",
+        });
+      } else if (username) {
+        return alert(`Halo ${username} Salam Literasi!`);
+      }
+      // console.log(value.title);
     } catch (error) {
       console.log(error);
     }
@@ -79,7 +101,7 @@ export const BooksPage = () => {
         <ThisNavbar />
       </div>
       <div
-        style={{ position: "relative", top: "4rem" }}
+        style={{ position: "relative", top: "3rem" }}
         className="d-flex align-items-center justify-content-center"
       >
         <img
@@ -93,21 +115,23 @@ export const BooksPage = () => {
         />
       </div>
       <div
-        className="container position-relative border rounded"
-        style={{ top: "6rem" }}
+        className="container position-relative rounded"
+        style={{ top: "6rem", border: "3px double rgba(1,2,3,.69)" }}
       >
         <div style={{ width: "80%", margin: "auto" }} className="mt-3">
           <Form className="d-flex justify-content-center">
             <div
               className="d-flex align-items-center p-2 border rounded"
-              style={{ gap: "8px" }}
+              style={{ gap: "6px" }}
             >
-              <div style={{ width: "30%" }}>Search the</div>
+              <div style={{ width: "33%", fontSize: "1.169rem" }}>
+                Search the
+              </div>
               <div>
                 <DropdownButton
                   id={`order`}
                   drop={"down"}
-                  variant="secondary"
+                  variant="outline-dark"
                   title={searchOne}
                 >
                   <Dropdown.Item
@@ -126,13 +150,13 @@ export const BooksPage = () => {
                   </Dropdown.Item>
                 </DropdownButton>
               </div>
-              <div>by</div>
+              <div style={{ fontSize: "1.169rem" }}>by</div>
               <div>
                 {searchOne === "Catalog" ? (
                   <DropdownButton
                     id={`cat`}
                     drop={"down"}
-                    variant="secondary"
+                    variant="outline-dark"
                     title={searchTwo}
                   >
                     <Dropdown.Item
@@ -168,7 +192,7 @@ export const BooksPage = () => {
                   <DropdownButton
                     id={`cat`}
                     drop={"down"}
-                    variant="secondary"
+                    variant="outline-dark"
                     title={thisAlpha === "asc" ? "A-Z" : "Z-A"}
                   >
                     <Dropdown.Item
@@ -205,6 +229,12 @@ export const BooksPage = () => {
                   style={{ width: "70%" }}
                   ref={search}
                   disabled={searchOne === "Sort" ? true : false}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      temp();
+                      e.preventDefault();
+                    }
+                  }}
                 />
                 <Button
                   variant="outline-dark"
@@ -218,8 +248,8 @@ export const BooksPage = () => {
           </Form>
         </div>
         <div
-          className="m-auto mt-3 mb-3 rounded border p-3"
-          style={{ width: "90%" }}
+          className="m-auto mt-3 mb-3 rounded p-3"
+          style={{ width: "90%", border: "1px solid rgba(1,1,1,.69)" }}
         >
           <Container>
             <Row>
@@ -229,7 +259,7 @@ export const BooksPage = () => {
                 currentPosts?.map((item, index) => (
                   <Col md={3} key={index}>
                     <Card
-                      style={{ width: "16rem",textDecoration:"none" }}
+                      style={{ textDecoration: "none" }}
                       bg="dark"
                       as={Link}
                       to={`/getdetail/${item.id}`}
@@ -245,9 +275,25 @@ export const BooksPage = () => {
                           {item.category}
                         </Card.Text>
                         <Card.Text>{item.author}</Card.Text>
-                        <Button variant="primary">Borrow</Button>
                       </Card.Body>
+                      <Button style={{ opacity: "0" }}>{"n"}</Button>
                     </Card>
+                    <div
+                      style={{
+                        zIndex: "10",
+                        position: "relative",
+                        top: "-3.3rem",
+                      }}
+                    >
+                      <Button
+                        className="w-100 rounded-0 border-top"
+                        variant="dark"
+                        disabled={item.stocks === 0 ? true : false}
+                        onClick={() => borrowBooks(item)}
+                      >
+                        {item.stocks === 0 ? "Unavailable" : "Borrow"}
+                      </Button>
+                    </div>
                   </Col>
                 ))
               )}

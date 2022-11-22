@@ -27,6 +27,7 @@ const books = "http://localhost:2000/books/";
 export const Home = () => {
   const dispatch = useDispatch();
   const type = useSelector((state) => state.checkSlice.thisAlpha);
+  const nice = useSelector((state) => state.checkSlice.niceSearch);
 
   const getBooks = async () => {
     try {
@@ -100,21 +101,27 @@ export const Home = () => {
           </Form>
         </Container>
       </div>
-      <div className="mb-3 pt-3 ">
-        <BookSlider />
-      </div>
-      <div className="mb-3">
-        <BookBusiness />
-      </div>
-      <div className="mb-3">
-        <BookKids />
-      </div>
-      <div className="mb-3">
-        <BookStockReady />
-      </div>
-      <div className="pb-3">
-        <BookOrder />
-      </div>
+      {nice ? (
+        "New"
+      ) : (
+        <div>
+          <div className="mb-3 pt-3 ">
+            <BookSlider />
+          </div>
+          <div className="mb-3">
+            <BookBusiness />
+          </div>
+          <div className="mb-3">
+            <BookKids />
+          </div>
+          <div className="mb-3">
+            <BookStockReady />
+          </div>
+          <div className="pb-3">
+            <BookOrder />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -8,6 +8,7 @@ export const checkSlice = createSlice({
     default: "all",
     searchOne: "Catalog",
     searchTwo: "Title",
+    niceSearch: "",
   },
   reducers: {
     whoLogin: (state, action) => {
@@ -25,10 +26,19 @@ export const checkSlice = createSlice({
     changeTwo: (state, action) => {
       state.searchTwo = action.payload;
     },
+    isSeacrh: (state, action) => {
+      state.niceSearch = action.payload;
+    },
   },
 });
 
-export const { whoLogin, checkAlpha, changeDef, changeSearch, changeTwo } =
-  checkSlice.actions;
+export const {
+  whoLogin,
+  checkAlpha,
+  changeDef,
+  changeSearch,
+  changeTwo,
+  isSeacrh,
+} = checkSlice.actions;
 
 export default checkSlice.reducer;
