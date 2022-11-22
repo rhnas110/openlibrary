@@ -87,7 +87,7 @@ export const SideDashboard = () => {
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a href="./index2.html" className="nav-link">
+                    <a href="/dashboard/paginationPage" className="nav-link">
                       <i className="far fa-circle nav-icon" />
                       <p>Dashboard v2</p>
                     </a>

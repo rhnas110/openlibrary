@@ -8,6 +8,7 @@ import { BooksPage } from "./Pages/Books/BooksPage";
 import { AboutPage } from "./Pages/About/AboutPage";
 import { LoginAdmin } from "./Pages/Admin/Login";
 import { NotFound } from "./Pages/NotFound/NotFound";
+import PaginationAdmin from "./Pages/Admin/PaginationAdmin";
 
 // components
 import Register from "./Components/Register";
@@ -49,6 +50,7 @@ function App() {
           element={temp ? <LoginAdmin /> : <Login />}
         />
         <Route path="/getdetail/:id" element={<BooksDetail/>} />
+        <Route path="/dashboard/paginationPage" element={<PaginationAdmin/>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
