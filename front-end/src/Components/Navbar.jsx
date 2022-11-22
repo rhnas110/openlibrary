@@ -9,10 +9,17 @@ import {
   Badge,
   Modal,
   Stack,
-  NavDropdown
+  NavDropdown,
 } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
-import { MdLogin, MdRememberMe, MdDeleteSweep, MdAccountCircle, MdAddTask, MdAssignmentInd } from "react-icons/md";
+import {
+  MdLogin,
+  MdRememberMe,
+  MdDeleteSweep,
+  MdAccountCircle,
+  MdAddTask,
+  MdAssignmentInd,
+} from "react-icons/md";
 
 import { GrUserAdmin } from "react-icons/gr";
 import { Link } from "react-router-dom";
@@ -23,17 +30,15 @@ import { useSelector, useDispatch } from "react-redux";
 import { whoLogin } from "../redux/checkSlice";
 import { logout } from "../redux/usersSlice";
 import { login } from "../redux/usersSlice";
+
 import axios from "axios";
 import { RiH3 } from "react-icons/ri";
-
-
 
 export const ThisNavbar = () => {
   const [showModal, setShowModal] = useState(false);
   const [hoverOne, setHoverOne] = useState(false);
   const [hoverTwo, setHoverTwo] = useState(false);
   const dispatch = useDispatch();
-  const checkUser = useSelector((state) => state.usersSlice.NIM);
   const location = useLocation();
 
   const handleCloseModal = () => setShowModal(false);
@@ -55,68 +60,66 @@ export const ThisNavbar = () => {
     dispatch(whoLogin(who));
   };
 
-
   const { username } = useSelector((state) => state.usersSlice.value);
-  const usernameLocalStorage = localStorage.getItem("username")
+  const usernameLocalStorage = localStorage.getItem("username");
 
   const KeepLogin = async () => {
     try {
-      const res = await axios.get(`http://localhost:2000/users/keeplogin/${usernameLocalStorage}`)
-      dispatch(login(res.data))
-      console.log(res.data)
+      const res = await axios.get(
+        `http://localhost:2000/users/keeplogin/${usernameLocalStorage}`
+      );
+      dispatch(login(res.data));
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
-  }
+  };
 
   useEffect(() => {
-    KeepLogin()
-  }, [])
+    KeepLogin();
+  }, []);
 
   const onLogout = () => {
-    dispatch(logout())
-    localStorage.removeItem("username")
-  }
+    dispatch(logout());
+    localStorage.removeItem("username");
+  };
 
   const ProfileShow = () => {
     if (username) {
       return (
-        <NavDropdown title="Profile" id="basic-nav-dropdown">
+        <NavDropdown id="basic-nav-dropdown" title="Profile" className="">
           <NavDropdown.Item href="#action/3.1">
-            <Button variant="light"
-              onClick={""}>{username} <MdAccountCircle />
+            <Button variant="light" onClick={""}>
+              <MdAccountCircle /> Profile
             </Button>
           </NavDropdown.Item>
           <NavDropdown.Item href="#action/3.2">
-            <Button variant="light"
-              onClick={onLogout}>Logout <MdDeleteSweep />
+            <Button variant="light" onClick={onLogout}>
+              Logout <MdDeleteSweep />
             </Button>
           </NavDropdown.Item>
         </NavDropdown>
-      )
+      );
     }
-  }
-
+  };
 
   return (
     <div>
       <Navbar
         variant="dark"
         expand="lg"
-        fixed="top"
+        // fixed="top"
         style={{
-          backgroundColor: "rgba(22, 47, 75,.69)",
-          // position: "relative",
+          backgroundColor: "rgba(22, 47, 75,1)",
         }}
       >
         <Container>
           <Navbar.Brand href="/" className="ms-4" id="zero-one">
             <span>OpenLibrary</span>
           </Navbar.Brand>
-            <Nav.Link><ProfileShow /></Nav.Link>
+
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto justify-content-end flex-grow-1 mx-sm-3">
+            <Nav className="me-auto justify-content-end flex-grow-1 mx-sm-3 align-items-center">
               <Nav.Link
                 href="/"
                 active={location.pathname === "/" ? true : false}
@@ -135,15 +138,17 @@ export const ThisNavbar = () => {
               >
                 About
               </Nav.Link>
-              <Button variant="outline-light" hidden={checkUser ? false : true}>
+              <Nav.Link>
+                <ProfileShow />
+              </Nav.Link>
+              <Button variant="outline-light" hidden={username ? false : true}>
                 <TfiShoppingCartFull /> <Badge bg="light">0</Badge>
               </Button>
             </Nav>
-            {/* button hilang kalo user login */}
             <Button
               variant="outline-light"
               onClick={handleShowModal}
-              hidden={checkUser ? true : false}
+              hidden={username ? true : false}
             >
               Login
               <MdLogin />
@@ -227,9 +232,6 @@ export const ThisNavbar = () => {
                 </Stack>
               </Modal.Body>
             </Modal>
-
-            {/* button hilang kalo user login */}
-            {/* ada profile kalo user login */}
           </Navbar.Collapse>
         </Container>
       </Navbar>

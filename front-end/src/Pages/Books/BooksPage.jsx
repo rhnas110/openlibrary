@@ -12,6 +12,7 @@ import {
   Row,
   Col,
 } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { BiSearchAlt } from "react-icons/bi";
 import axios from "axios";
 import { allBook } from "../../redux/booksSlice";
@@ -29,7 +30,7 @@ const books = "http://localhost:2000/books/";
 export const BooksPage = () => {
   const search = useRef("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(4);
+  const [postsPerPage, setPostsPerPage] = useState(12);
 
   const dispatch = useDispatch();
   const { all } = useSelector((state) => state.booksSlice);
@@ -227,7 +228,12 @@ export const BooksPage = () => {
               ) : (
                 currentPosts?.map((item, index) => (
                   <Col md={3} key={index}>
-                    <Card style={{ width: "16rem" }} bg="dark">
+                    <Card
+                      style={{ width: "16rem",textDecoration:"none" }}
+                      bg="dark"
+                      as={Link}
+                      to={`/getdetail/${item.id}`}
+                    >
                       <Card.Img
                         variant="top"
                         src={item.image}

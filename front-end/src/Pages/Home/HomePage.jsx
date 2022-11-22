@@ -11,13 +11,13 @@ import "./home.css";
 export const ThisHome = () => {
   return (
     <div>
-      <div className="fixed-top text-white">
+      <div className="text-white">
         <ThisNavbar />
       </div>
 
       <div>
         <Carousel className="main-text">
-          <Carousel.Item style={{ height: "100vh" }}>
+          <Carousel.Item style={{ height: "91vh" }}>
             <img
               className="d-block w-100"
               src="https://images2.alphacoders.com/104/1042582.jpg"
@@ -26,7 +26,7 @@ export const ThisHome = () => {
             <Carousel.Caption
               style={{
                 position: "absolute",
-                top: "40vh",
+                top: "35vh",
               }}
             >
               <h3
@@ -40,7 +40,7 @@ export const ThisHome = () => {
               </h3>
             </Carousel.Caption>
           </Carousel.Item>
-          <Carousel.Item style={{ height: "91vh" }}>
+          <Carousel.Item style={{ height: "81vh" }}>
             <img
               className="d-block w-100"
               src="https://dataindonesia.id/media-images/1657159790627_89_Perpustakaan.jpg"
@@ -49,7 +49,7 @@ export const ThisHome = () => {
             <Carousel.Caption
               style={{
                 position: "absolute",
-                top: "40vh",
+                top: "35vh",
               }}
             >
               <h3
@@ -72,7 +72,7 @@ export const ThisHome = () => {
               </Button>
             </Carousel.Caption>
           </Carousel.Item>
-          <Carousel.Item style={{ height: "100vh" }}>
+          <Carousel.Item style={{ height: "91vh" }}>
             <img
               className="d-block w-100"
               src="https://c4.wallpaperflare.com/wallpaper/767/594/322/books-library-bokeh-depth-of-field-wallpaper-preview.jpg"
@@ -81,7 +81,7 @@ export const ThisHome = () => {
             <Carousel.Caption
               style={{
                 position: "absolute",
-                top: "40vh",
+                top: "35vh",
                 textShadow: "4px 3px 2px rgba(12, 23, 34, .99)",
                 fontSize: "2.4rem",
               }}
@@ -97,7 +97,7 @@ export const ThisHome = () => {
               <p>Library opened On November 11, 2022</p>
             </Carousel.Caption>
           </Carousel.Item>
-          <Carousel.Item style={{ height: "91vh" }}>
+          <Carousel.Item style={{ height: "81vh" }}>
             <img
               className="d-block w-100"
               src="https://images.unsplash.com/photo-1549383028-df014fa3a325?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80"
@@ -106,7 +106,7 @@ export const ThisHome = () => {
             <Carousel.Caption
               style={{
                 position: "absolute",
-                top: "40vh",
+                top: "35vh",
               }}
             >
               <h3
@@ -132,9 +132,11 @@ export const ThisHome = () => {
           </Carousel.Item>
         </Carousel>
       </div>
+
       <div id="books" style={{ backgroundColor: "rgba(44, 44, 44,.69)" }}>
         <Home />
       </div>
+
       <div>
         <ThisFooter />
       </div>
