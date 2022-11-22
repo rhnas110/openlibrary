@@ -1,0 +1,103 @@
+.form-pagination input {
+    width: 500px;
+    background: rgba(30, 0, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    color: black;
+    margin-left: 30%;
+    margin-top: 5px;
+    padding: 18px 26px;
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: 0.8px;
+    text-align: center;
+}
+.form-pagination ::-webkit-input-placeholder{
+    color: #001253;
+    font-style: italic;  
+}
+.button-pagination{
+    margin-left: 42%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 200px;
+    height: 50px;
+    border-radius: 10px;
+    color: black;
+    background: rgba(132, 0, 255, 0.1);
+    font-weight: 700;
+    border: 1px solid white;
+}
+.btn-Descending{
+    float: left;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 30px;
+    width: 200px;
+    height: 50px;
+    border-radius: 10px;
+    color: black;
+    background: white;
+    font-weight: 700;
+    border: 1px solid white;
+}
+.btn-ascending{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 30px;
+    width: 200px;
+    height: 50px;
+    border-radius: 10px;
+    color: black;
+    background: white;
+    font-weight: 700;
+    border: 1px solid white;
+    float: right;
+}
+
+.paginateee{
+    display: flex;
+    justify-content: space-around;
+    font-weight: bold;
+    align-items: center;
+    color: black;
+    background-color: white;
+}
+.table-bookList{
+    margin-left: 50px;
+    margin-right: 50px;
+}
+.full p{
+    font-weight: bold;
+    color: black;
+    background-color: white;
+    width: 250px;
+    height: 40px;
+    text-align: center;
+    margin: auto;
+}
+.full h1{
+    font-weight: bold;
+    color: black;
+    background-color: white;
+    width: 360px;
+    margin: auto;
+    margin-bottom: 5px;
+    border: 1px solid black;
+    border-radius: 10px;    
+}
+
+.full{
+    background-image: url("../asset/background-pagination.png");
+    background-size: cover;
+    height: auto;
+}
+.table-bookList .button-td{
+    margin-top: 2px;
+}
+
+
+
+.button-td{
+    margin-top: 3px;
+}
