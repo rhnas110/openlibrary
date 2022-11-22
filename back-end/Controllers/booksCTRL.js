@@ -1,7 +1,7 @@
 const db = require("../models");
 const books = db.Books;
 const { Op } = require("sequelize");
-const jwt = require("jsonwebtoken")
+const jwt = require("jsonwebtoken");
 
 module.exports = {
   books_reset: async (req, res) => {
@@ -9,38 +9,6 @@ module.exports = {
       await books.destroy({ truncate: true });
       const check = await books.findAll();
       res.status(200).send(check);
-    } catch (error) {
-      res.status(400).send(error);
-      console.log(error);
-    }
-  },
-  add_books: async (req, res) => {
-    try {
-      const {
-        title,
-        category,
-        publishDate,
-        image,
-        author,
-        publisher,
-        abstract,
-        stocks,
-      } = req.body;
-      const check = await books.findAll({ raw: true });
-      const incBooks = check.map((item) => item.bookId);
-      const new_books = await books.create({
-        title,
-        category,
-        publishDate,
-        image,
-        author,
-        publisher,
-        abstract,
-        bookId: Math.max(...incBooks) + 1,
-        stocks,
-      });
-
-      return res.status(200).send({ message: "Success", new_books });
     } catch (error) {
       res.status(400).send(error);
       console.log(error);
@@ -178,18 +146,17 @@ module.exports = {
       console.log(error);
     }
   },
-  getAllProductById: async(req, res) => {
+  getAllProductById: async (req, res) => {
     try {
-      
       const response = await books.findOne({
         where: {
-          id: req.params.id
-        }
-      })
-      res.status(200).send(response)
-    }catch(err){
-      console.log(err)
-      res.status(404).send(err)
+          id: req.params.id,
+        },
+      });
+      res.status(200).send(response);
+    } catch (err) {
+      console.log(err);
+      res.status(404).send(err);
     }
-  }
+  },
 };

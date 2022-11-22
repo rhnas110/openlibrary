@@ -7,23 +7,23 @@ import { useSelector } from "react-redux";
 import { Card, Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { RiArrowRightSLine } from "react-icons/ri";
-import Alert from 'react-bootstrap/Alert';
+import Alert from "react-bootstrap/Alert";
+import { Link } from "react-router-dom";
 
 export const BookStockReady = () => {
   const ready = useSelector((state) => state.booksSlice.stocksReady);
   const { username } = useSelector((state) => state.usersSlice.value);
 
-
   const borrowBooks = (value) => {
     try {
       if (!username) {
-        return alert ("Login Ya, Biar Nama Lu Di Panggil")
+        return alert("Login Ya, Biar Nama Lu Di Panggil");
       } else if (username) {
-        return alert(`Halo ${username} Salam Literasi!`)
+        return alert(`Halo ${username} Salam Literasi!`);
       }
       // console.log(value.title);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 
@@ -102,7 +102,16 @@ export const BookStockReady = () => {
                   disabled={item.stocks === 0 ? true : false}
                   onClick={() => borrowBooks(item)}
                 >
-                  {item.stocks === 0 ? "Unavailable" : <NavLink to={`/getdetail/${item.id}`} className="btn btn-outline-light  ">Books Details</NavLink>}
+                  {item.stocks === 0 ? (
+                    "Unavailable"
+                  ) : (
+                    <NavLink
+                      to={`/getdetail/${item.id}`}
+                      className="btn btn-outline-light  "
+                    >
+                      Books Details
+                    </NavLink>
+                  )}
                 </Button>
               </Card>
             </SwiperSlide>

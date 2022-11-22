@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { Button, Form, Container } from "react-bootstrap";
 import axios from "axios";
 
@@ -56,7 +56,7 @@ export const Home = () => {
   const forBusiness = async () => {
     try {
       const business = await (
-        await axios.get(books + "filter?category=business")
+        await axios.get(books + "search?category=business")
       ).data;
       dispatch(businessBook(business));
     } catch (error) {
@@ -65,7 +65,7 @@ export const Home = () => {
   };
   const forKids = async () => {
     try {
-      const kids = await (await axios.get(books + "filter?category=kids")).data;
+      const kids = await (await axios.get(books + "search?category=kids")).data;
       dispatch(kidsBook(kids));
     } catch (error) {
       let err = error;
@@ -90,33 +90,29 @@ export const Home = () => {
               placeholder="Search"
               className="me-2"
               aria-label="Search"
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                }
+              }}
             />
             <Button variant="outline-light">Search</Button>
           </Form>
         </Container>
       </div>
-      <div>
+      <div className="mb-3 pt-3 ">
         <BookSlider />
       </div>
-      {/* <div>
-        buku paling banyak dibaca
-        <BookSlider />
-      </div>
-      <div>
-        buku yang trending
-        <BookSlider />
-      </div>
-    */}
-      <div>
+      <div className="mb-3">
         <BookBusiness />
       </div>
-      <div>
+      <div className="mb-3">
         <BookKids />
       </div>
-      <div>
+      <div className="mb-3">
         <BookStockReady />
       </div>
-      <div>
+      <div className="pb-3">
         <BookOrder />
       </div>
     </div>

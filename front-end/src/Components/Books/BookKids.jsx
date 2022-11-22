@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { Card, Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { RiArrowRightSLine } from "react-icons/ri";
+import { Link } from "react-router-dom";
 
 export const BookKids = () => {
   const kids = useSelector((state) => state.booksSlice.thisKids);
@@ -16,13 +17,13 @@ export const BookKids = () => {
   const borrowBooks = (value) => {
     try {
       if (!username) {
-        return alert ("Login Ya, Biar Nama Lu Di Panggil")
+        return alert("Login Ya, Biar Nama Lu Di Panggil");
       } else if (username) {
-        return alert(`Halo ${username} Salam Literasi!`)
+        return alert(`Halo ${username} Salam Literasi!`);
       }
       // console.log(value.title);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
   const crossTitle = (str, num) => {
@@ -31,18 +32,13 @@ export const BookKids = () => {
     } else return str;
   };
   return (
-    <div className="container py-3 px-4 justify-content-center bg-dark">
+    <div className="container py-3 px-4 justify-content-center bg-dark rounded">
       <div style={{ width: "6rem" }} className="mb-4">
-        {/* <Link to={"/books"} style={{ textDecoration: "none" }} target="_blank"> */}
         <div className="textsection">
-          <h1 className="text-white">
+          <h2 className="text-white">
             <span className="fw-semibold"></span> Kids{" "}
-            {/* <span>
-              <RiArrowRightSLine />
-            </span> */}
-          </h1>
+          </h2>
         </div>
-        {/* </Link> */}
       </div>
       <Swiper
         freeMode={true}
@@ -75,7 +71,12 @@ export const BookKids = () => {
         {kids?.map((item, index) => {
           return (
             <SwiperSlide key={index}>
-              <Card className="p-0 overflow-hidden shadow">
+              <Card
+                className="p-0 overflow-hidden shadow"
+                as={Link}
+                to={"/books"}
+                style={{ textDecoration: "none" }}
+              >
                 <div className="overflow-hidden p-0 rounded bg-light">
                   <Card.Img
                     variant="top"
@@ -98,9 +99,18 @@ export const BookKids = () => {
                   className="w-100 rounded-0"
                   variant="dark"
                   disabled={item.stocks === 0 ? true : false}
-                  onClick={() => borrowBooks(item)}
+                  // onClick={() => borrowBooks(item)}
                 >
-                  {item.stocks === 0 ? "Unavailable" : <NavLink to={`/getdetail/${item.id}`} className="btn btn-outline-light  ">Books Details</NavLink>}
+                  {item.stocks === 0 ? (
+                    "Unavailable"
+                  ) : (
+                    <NavLink
+                      to={`/getdetail/${item.id}`}
+                      style={{ textDecoration: "none", color: "inherit" }}
+                    >
+                      Books Details
+                    </NavLink>
+                  )}
                 </Button>
               </Card>
             </SwiperSlide>

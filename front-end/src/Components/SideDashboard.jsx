@@ -347,6 +347,23 @@ export const SideDashboard = () => {
                   </li>
                 </ul>
               </li>
+              <li className="nav-item">
+                <a href="#" className="nav-link">
+                  <i className="nav-icon far fa-plus-square" />
+                  <p>
+                    Extras
+                    <i className="fas fa-angle-left right" />
+                  </p>
+                </a>
+                <ul className="nav nav-treeview">
+                  <li className="nav-item">
+                    <a href="/dashboard/add" className="nav-link">
+                      <i className="far fa-circle nav-icon" />
+                      <p>Add Book</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
               <li className="nav-header">EXAMPLES</li>
               <li className="nav-item">
                 <a href="pages/calendar.html" className="nav-link">
@@ -484,168 +501,7 @@ export const SideDashboard = () => {
                   </li>
                 </ul>
               </li>
-              <li className="nav-item">
-                <a href="#" className="nav-link">
-                  <i className="nav-icon far fa-plus-square" />
-                  <p>
-                    Extras
-                    <i className="fas fa-angle-left right" />
-                  </p>
-                </a>
-                <ul className="nav nav-treeview">
-                  <li className="nav-item">
-                    <a href="#" className="nav-link">
-                      <i className="far fa-circle nav-icon" />
-                      <p>
-                        Login &amp; Register v1
-                        <i className="fas fa-angle-left right" />
-                      </p>
-                    </a>
-                    <ul className="nav nav-treeview">
-                      <li className="nav-item">
-                        <a
-                          href="pages/examples/login.html"
-                          className="nav-link"
-                        >
-                          <i className="far fa-circle nav-icon" />
-                          <p>Login v1</p>
-                        </a>
-                      </li>
-                      <li className="nav-item">
-                        <a
-                          href="pages/examples/register.html"
-                          className="nav-link"
-                        >
-                          <i className="far fa-circle nav-icon" />
-                          <p>Register v1</p>
-                        </a>
-                      </li>
-                      <li className="nav-item">
-                        <a
-                          href="pages/examples/forgot-password.html"
-                          className="nav-link"
-                        >
-                          <i className="far fa-circle nav-icon" />
-                          <p>Forgot Password v1</p>
-                        </a>
-                      </li>
-                      <li className="nav-item">
-                        <a
-                          href="pages/examples/recover-password.html"
-                          className="nav-link"
-                        >
-                          <i className="far fa-circle nav-icon" />
-                          <p>Recover Password v1</p>
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li className="nav-item">
-                    <a href="#" className="nav-link">
-                      <i className="far fa-circle nav-icon" />
-                      <p>
-                        Login &amp; Register v2
-                        <i className="fas fa-angle-left right" />
-                      </p>
-                    </a>
-                    <ul className="nav nav-treeview">
-                      <li className="nav-item">
-                        <a
-                          href="pages/examples/login-v2.html"
-                          className="nav-link"
-                        >
-                          <i className="far fa-circle nav-icon" />
-                          <p>Login v2</p>
-                        </a>
-                      </li>
-                      <li className="nav-item">
-                        <a
-                          href="pages/examples/register-v2.html"
-                          className="nav-link"
-                        >
-                          <i className="far fa-circle nav-icon" />
-                          <p>Register v2</p>
-                        </a>
-                      </li>
-                      <li className="nav-item">
-                        <a
-                          href="pages/examples/forgot-password-v2.html"
-                          className="nav-link"
-                        >
-                          <i className="far fa-circle nav-icon" />
-                          <p>Forgot Password v2</p>
-                        </a>
-                      </li>
-                      <li className="nav-item">
-                        <a
-                          href="pages/examples/recover-password-v2.html"
-                          className="nav-link"
-                        >
-                          <i className="far fa-circle nav-icon" />
-                          <p>Recover Password v2</p>
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li className="nav-item">
-                    <a
-                      href="pages/examples/lockscreen.html"
-                      className="nav-link"
-                    >
-                      <i className="far fa-circle nav-icon" />
-                      <p>Lockscreen</p>
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a
-                      href="pages/examples/legacy-user-menu.html"
-                      className="nav-link"
-                    >
-                      <i className="far fa-circle nav-icon" />
-                      <p>Legacy User Menu</p>
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a
-                      href="pages/examples/language-menu.html"
-                      className="nav-link"
-                    >
-                      <i className="far fa-circle nav-icon" />
-                      <p>Language Menu</p>
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a href="pages/examples/404.html" className="nav-link">
-                      <i className="far fa-circle nav-icon" />
-                      <p>Error 404</p>
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a href="pages/examples/500.html" className="nav-link">
-                      <i className="far fa-circle nav-icon" />
-                      <p>Error 500</p>
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a href="pages/examples/pace.html" className="nav-link">
-                      <i className="far fa-circle nav-icon" />
-                      <p>Pace</p>
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a href="pages/examples/blank.html" className="nav-link">
-                      <i className="far fa-circle nav-icon" />
-                      <p>Blank Page</p>
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a href="starter.html" className="nav-link">
-                      <i className="far fa-circle nav-icon" />
-                      <p>Starter Page</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
+
               <li className="nav-item">
                 <a href="#" className="nav-link">
                   <i className="nav-icon fas fa-search" />
