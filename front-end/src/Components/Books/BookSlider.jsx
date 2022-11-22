@@ -8,6 +8,7 @@ import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { RiArrowRightSLine } from "react-icons/ri";
 import { NavLink } from "react-router-dom";
+import swal from "sweetalert";
 
 export const BookSlider = () => {
   const books = useSelector((state) => state.booksSlice.all);
@@ -16,7 +17,13 @@ export const BookSlider = () => {
   const borrowBooks = (value) => {
     try {
       if (!username) {
-        return alert("Login Ya, Biar Nama Lu Di Panggil");
+        // return alert("Login Ya, Biar Nama Lu Di Panggil");
+        return swal({
+          title: "Login first",
+          // text: "You clicked the button!",
+          icon: "error",
+          button: "Oke",
+        });
       } else if (username) {
         return alert(`Halo ${username} Salam Literasi!`);
       }
@@ -79,7 +86,7 @@ export const BookSlider = () => {
               <Card
                 className="p-0 overflow-hidden shadow"
                 as={Link}
-                to={"/books"}
+                to={`/getdetail/${item.id}`}
                 style={{ textDecoration: "none" }}
               >
                 <div className="overflow-hidden p-0 rounded bg-light">
@@ -100,24 +107,20 @@ export const BookSlider = () => {
                     <p>{item.author}</p>
                   </Card.Text>
                 </Card.Body>
+                <Button style={{ opacity: "0" }}>{"n"}</Button>
+              </Card>
+              <div
+                style={{ zIndex: "10", position: "relative", top: "-3.3rem" }}
+              >
                 <Button
                   className="w-100 rounded-0"
                   variant="dark"
                   disabled={item.stocks === 0 ? true : false}
-                  // onClick={() => borrowBooks(item)}
+                  onClick={() => borrowBooks(item)}
                 >
-                  {item.stocks === 0 ? (
-                    "Unavailable"
-                  ) : (
-                    <NavLink
-                      to={`/getdetail/${item.id}`}
-                      style={{ textDecoration: "none", color: "inherit" }}
-                    >
-                      Books Details
-                    </NavLink>
-                  )}
+                  {item.stocks === 0 ? "Unavailable" : "Borrow"}
                 </Button>
-              </Card>
+              </div>
             </SwiperSlide>
           );
         })}

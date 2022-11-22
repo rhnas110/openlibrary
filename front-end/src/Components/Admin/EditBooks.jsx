@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Container, Stack, Form, Button } from "react-bootstrap";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 
 const url_book = "http://localhost:2000/admin";
 
-// add action in list book admin
-// add button {edit, delete} in action column
-// button edit as link to edit-book/${item.id}
-// make a delete book function
-// button delete onclick funtion delete book(item.id)
-
 export const EditBooks = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [publishDate, setPublishDate] = useState("");
@@ -35,7 +30,9 @@ export const EditBooks = () => {
         abstract,
         stocks,
       });
-      // navigate to list book admin
+      // console.log(thisBook);
+      navigate("/dashboard/paginationPage");
+      return alert(`success editing book`);
     } catch (error) {
       console.log(error);
     }
@@ -68,14 +65,14 @@ export const EditBooks = () => {
           className="border rounded m-auto p-3 mb-5"
         >
           <div className="mb-3 d-flex justify-content-between">
-            <h3>Add Book</h3>
+            <h3>Edit Book</h3>
             <Button
               variant="outline-dark"
               as={Link}
-              to={"/dashboard"}
+              to={"/dashboard/paginationPage"}
               className="text-decoration-none"
             >
-              Dashboard
+              Back
             </Button>
           </div>
           <Form.Text className="text-muted">
@@ -91,6 +88,7 @@ export const EditBooks = () => {
               </Form.Label>
               <Form.Control
                 placeholder="ex: Meet Me After Sunset"
+                value={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
             </Form.Group>
@@ -101,7 +99,9 @@ export const EditBooks = () => {
               </Form.Label>
 
               <Form.Select aria-label="Floating label select example">
-                <option>Select Category</option>
+                <option value={category}>
+                  {category ? category : "Select Category"}
+                </option>
                 <option
                   value="Art"
                   onClick={(e) => setCategory(e.target.value)}
@@ -193,6 +193,7 @@ export const EditBooks = () => {
               <Form.Label>Publish Date</Form.Label>
               <Form.Control
                 placeholder={`year: now (${new Date().getFullYear()})`}
+                value={publishDate}
                 onChange={(e) => setPublishDate(e.target.value)}
               />
             </Form.Group>
@@ -202,6 +203,7 @@ export const EditBooks = () => {
               </Form.Label>
               <Form.Control
                 placeholder="ex: https://IMG-book.png"
+                value={image}
                 onChange={(e) => setImage(e.target.value)}
               />
             </Form.Group>
@@ -211,6 +213,7 @@ export const EditBooks = () => {
               </Form.Label>
               <Form.Control
                 placeholder="Author"
+                value={author}
                 onChange={(e) => setAuthor(e.target.value)}
               />
             </Form.Group>
@@ -220,6 +223,7 @@ export const EditBooks = () => {
               </Form.Label>
               <Form.Control
                 placeholder="Publisher"
+                value={publisher}
                 onChange={(e) => setPublisher(e.target.value)}
               />
             </Form.Group>
@@ -230,6 +234,7 @@ export const EditBooks = () => {
               <Form.Control
                 as="textarea"
                 placeholder="book of mastering magic..."
+                value={abstract}
                 style={{ height: "100px" }}
                 onChange={(e) => setAbstract(e.target.value)}
               />
@@ -238,12 +243,17 @@ export const EditBooks = () => {
               <Form.Label>Stock</Form.Label>
               <Form.Control
                 placeholder="default: 0"
+                value={stocks}
                 onChange={(e) => setStocks(e.target.value)}
               />
             </Form.Group>
 
             <div className="text-right">
-              <Button variant="success" type="outline-submit" style={{ width: "20%" }}>
+              <Button
+                variant="success"
+                type="outline-submit"
+                style={{ width: "20%" }}
+              >
                 Edit
               </Button>
             </div>

@@ -7,7 +7,7 @@ import { ThisHome } from "./Pages/Home/HomePage";
 import { BooksPage } from "./Pages/Books/BooksPage";
 import { AboutPage } from "./Pages/About/AboutPage";
 import { LoginAdmin } from "./Pages/Admin/Login";
-import { NotFound } from "./Pages/NotFound";
+import { NotFound } from "./Pages/NotFound/NotFound";
 import PaginationAdmin from "./Pages/Admin/PaginationAdmin";
 
 // components
@@ -35,7 +35,6 @@ function App() {
         <Route path="/books" element={<BooksPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/verification/:token" element={<VerificationPage />} />
-
 
         <Route path="/login" element={temp ? <LoginAdmin /> : <Login />} />
         <Route path="/register" element={<Register />} />

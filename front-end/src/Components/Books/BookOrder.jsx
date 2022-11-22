@@ -8,8 +8,9 @@ import "swiper/css/free-mode";
 import { useSelector, useDispatch } from "react-redux";
 import { checkAlpha } from "../../redux/checkSlice";
 import { Card, Button, Dropdown, DropdownButton } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { RiArrowRightSLine } from "react-icons/ri";
+import swal from "sweetalert";
 
 export const BookOrder = () => {
   const alpha = useSelector((state) => state.booksSlice.alpha);
@@ -20,13 +21,19 @@ export const BookOrder = () => {
   const borrowBooks = (value) => {
     try {
       if (!username) {
-        return alert ("Login Ya, Biar Nama Lu Di Panggil")
+        // return alert("Login Ya, Biar Nama Lu Di Panggil");
+        return swal({
+          title: "Login first",
+          // text: "You clicked the button!",
+          icon: "error",
+          button: "Oke",
+        });
       } else if (username) {
-        return alert(`Halo ${username} Salam Literasi!`)
+        return alert(`Halo ${username} Salam Literasi!`);
       }
       // console.log(value.title);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 
@@ -36,24 +43,12 @@ export const BookOrder = () => {
     } else return str;
   };
   return (
-    <div className="container py-3 px-4 justify-content-center bg-dark">
-      {/* <div style={{ width: "18rem" }} className="mb-4">
-        <Link to={"/books"} style={{ textDecoration: "none" }} target="_blank">
-          <div className="textsection">
-            <h1 className="text-white">
-              <span className="fw-semibold">All</span> Books{" "}
-              <span>
-                <RiArrowRightSLine />
-              </span>
-            </h1>
-          </div>
-        </Link>
-      </div> */}
+    <div className="container py-3 px-4 justify-content-center bg-dark rounded">
       <div className="mb-2">
         <DropdownButton
           id={`order`}
           drop={"end"}
-          variant="secondary"
+          variant="outline-light"
           title={type === "asc" ? "A-Z " : "Z-A "}
         >
           <Dropdown.Item
@@ -104,7 +99,12 @@ export const BookOrder = () => {
         {alpha?.map((item, index) => {
           return (
             <SwiperSlide key={index}>
-              <Card className="p-0 overflow-hidden shadow">
+              <Card
+                className="p-0 overflow-hidden shadow"
+                as={Link}
+                to={`/getdetail/${item.id}`}
+                style={{ textDecoration: "none" }}
+              >
                 <div className="overflow-hidden p-0 rounded bg-light">
                   <Card.Img
                     variant="top"
@@ -123,15 +123,20 @@ export const BookOrder = () => {
                     <p>{item.author}</p>
                   </Card.Text>
                 </Card.Body>
+                <Button style={{ opacity: "0" }}>{"n"}</Button>
+              </Card>
+              <div
+                style={{ zIndex: "10", position: "relative", top: "-3.3rem" }}
+              >
                 <Button
                   className="w-100 rounded-0"
                   variant="dark"
                   disabled={item.stocks === 0 ? true : false}
                   onClick={() => borrowBooks(item)}
                 >
-                  {item.stocks === 0 ? "Unavailable" : <NavLink to={`/getdetail/${item.id}`} className="btn btn-outline-light  ">Books Details</NavLink>}
+                  {item.stocks === 0 ? "Unavailable" : "Borrow"}
                 </Button>
-              </Card>
+              </div>
             </SwiperSlide>
           );
         })}

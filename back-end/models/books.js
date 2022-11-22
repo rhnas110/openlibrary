@@ -16,10 +16,6 @@ module.exports = (sequelize, DataTypes) => {
       title: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: {
-          arg: true,
-          msg: "This book already exists.",
-        },
       },
       category: {
         type: DataTypes.STRING,

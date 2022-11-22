@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { Container, Stack, Form, Button, FloatingLabel } from "react-bootstrap";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./addbooks.css";
 
 const url_book = "http://localhost:2000/admin";
 
 export const AddBooks = () => {
+  const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [publishDate, setPublishDate] = useState("");
@@ -15,16 +16,6 @@ export const AddBooks = () => {
   const [publisher, setPublisher] = useState("");
   const [abstract, setAbstract] = useState("");
   const [stocks, setStocks] = useState("");
-  // console.log({
-  //   title,
-  //   category,
-  //   publishDate,
-  //   image,
-  //   author,
-  //   publisher,
-  //   abstract,
-  //   stocks,
-  // });
 
   const newBook = async (e) => {
     e.preventDefault();
@@ -62,8 +53,8 @@ export const AddBooks = () => {
         abstract,
         stocks,
       });
+      navigate("/dashboard/paginationPage");
       return alert(`success add book ${thisBook.data.new_books.title}`);
-      // navigate to list all book admin
     } catch (error) {
       alert(
         `${error.response.data.errors[0].message} The title = ${error.response.data.fields.title}`
