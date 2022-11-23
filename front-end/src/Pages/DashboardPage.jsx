@@ -10,7 +10,7 @@ export const Dashboard = () => {
       <NavbarDashboard />
       <SideDashboard />
       <MainDashboard />
-      <FooterDashboard />
+      {/* <FooterDashboard /> */}
     </>
   );
 };

@@ -16,6 +16,7 @@ export const AddBooks = () => {
   const [publisher, setPublisher] = useState("");
   const [abstract, setAbstract] = useState("");
   const [stocks, setStocks] = useState("");
+  console.log(category);
 
   const newBook = async (e) => {
     e.preventDefault();
