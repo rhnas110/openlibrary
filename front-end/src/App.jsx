@@ -9,6 +9,7 @@ import { AboutPage } from "./Pages/About/AboutPage";
 import { LoginAdmin } from "./Pages/Admin/Login";
 import { NotFound } from "./Pages/NotFound/NotFound";
 import PaginationAdmin from "./Pages/Admin/PaginationAdmin";
+import { HistoryPage } from "./Pages/HistoryPage";
 
 // components
 import Register from "./Components/Register";
@@ -38,8 +39,9 @@ function App() {
 
         <Route path="/login" element={temp ? <LoginAdmin /> : <Login />} />
         <Route path="/register" element={<Register />} />
-
         <Route path="/getdetail/:id" element={<BooksDetail />} />
+
+        <Route path="/history" element={<HistoryPage />} />
 
         {/* route for admin */}
         <Route path="/dashboard" element={<Dashboard />} />

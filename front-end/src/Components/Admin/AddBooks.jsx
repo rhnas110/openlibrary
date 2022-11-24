@@ -139,6 +139,12 @@ export const AddBooks = () => {
                   Comedy
                 </option>
                 <option
+                  value="Horror"
+                  onClick={(e) => setCategory(e.target.value)}
+                >
+                  Horror
+                </option>
+                <option
                   value="Sastra"
                   onClick={(e) => setCategory(e.target.value)}
                 >

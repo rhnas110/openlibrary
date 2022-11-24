@@ -121,7 +121,15 @@ export const ThisFooter = () => {
               <p>
                 Copyright ©{new Date().getFullYear()} All rights reserved by:{" "}
                 <span style={{ textDecoration: "none" }}>
-                  <strong className="text-warning">Open Library</strong>
+                  <strong className="text-warning">Open Library</strong>{" "}
+                  <div
+                    style={{ display: "inline-block", transform: "scale(0.88)" }}
+                  >
+                    <img
+                      src="https://openlibrary.org/static/images/pantheon.png"
+                      alt=""
+                    />
+                  </div>
                 </span>
               </p>
             </div>

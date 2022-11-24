@@ -19,6 +19,8 @@ import {
   MdAccountCircle,
   MdAddTask,
   MdAssignmentInd,
+  MdHistory,
+  MdNotifications,
 } from "react-icons/md";
 
 import { GrUserAdmin } from "react-icons/gr";
@@ -88,12 +90,26 @@ export const ThisNavbar = () => {
       return (
         <NavDropdown id="basic-nav-dropdown" title="Profile" className="">
           <NavDropdown.Item href="#action/3.1">
-            <Button variant="light" onClick={""}>
+            <Button variant="light" onClick={""} style={{ width: "100%" }}>
               <MdAccountCircle /> Profile
             </Button>
           </NavDropdown.Item>
+          <NavDropdown.Item href="#action/3.1">
+            <Button
+              variant="light"
+              style={{ width: "100%" }}
+              as={Link}
+              to={"/history"}
+            >
+              <MdHistory /> History
+            </Button>
+          </NavDropdown.Item>
           <NavDropdown.Item href="#action/3.2">
-            <Button variant="light" onClick={onLogout}>
+            <Button
+              variant="light"
+              onClick={onLogout}
+              style={{ width: "100%" }}
+            >
               Logout <MdDeleteSweep />
             </Button>
           </NavDropdown.Item>
@@ -144,6 +160,21 @@ export const ThisNavbar = () => {
               <Button variant="outline-light" hidden={username ? false : true}>
                 <TfiShoppingCartFull /> <Badge bg="light">0</Badge>
               </Button>
+              <Nav.Link
+                // className="border"
+                style={{ position: "absolute", right: "0" }}
+              >
+                <Button
+                  hidden={username ? false : true}
+                  style={{
+                    backgroundColor: "transparent",
+                    transform: "scale(1.234)",
+                  }}
+                  className="border-0"
+                >
+                  <MdNotifications />
+                </Button>
+              </Nav.Link>
             </Nav>
             <Button
               variant="outline-light"

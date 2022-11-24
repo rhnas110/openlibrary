@@ -274,7 +274,7 @@ export const BooksPage = () => {
                         <Card.Text style={{ opacity: ".5" }}>
                           {item.category}
                         </Card.Text>
-                        <Card.Text>{item.author}</Card.Text>
+                        <Card.Text>{crossTitle(item?.author, 15)}</Card.Text>
                       </Card.Body>
                       <Button style={{ opacity: "0" }}>{"n"}</Button>
                     </Card>
